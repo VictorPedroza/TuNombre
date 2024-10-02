@@ -1,0 +1,99 @@
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+main header {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+main header h1 {
+  color: var(--primary-color);
+}
+
+main header span {
+  color: var(--terd-color);
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  padding: .8rem 1.4rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: var(--second-color);
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
+
+.btn-secondary {
+  background-color: var(--terd-color);;
+  color: var(--second-color);
+}
+
+.btn:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+.custom-overlay {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.custom-modal {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 500px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.custom-modal h2 {
+  color: var(--primary-color);
+  padding: 1rem;
+}
+
+.custom-modal p {
+  font-size: 20px;
+  color: #010101;
+}
+
+.custom-modal span {
+  font-weight: bold;
+  color: var(--terd-color);
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--terd-color);
+}
+
+@media screen and (max-width: 768px) {
+  .buttons {
+    flex-direction: column;
+    width: 80%
+  }
+}
