@@ -36,7 +36,9 @@ export default function Home() {
         <WelcomeComponent />
       ) : (
         <header>
-          <h1>Seja bem-vinda <span>MiAmor</span></h1>
+          <h1>
+            Seja bem-vinda <span>MiAmor</span>
+          </h1>
           <div className="buttons">
             <button className="btn" onClick={() => openSpecificModal("first")}>
               Login
@@ -50,7 +52,6 @@ export default function Home() {
           </div>
         </header>
       )}
-      <h1>Te Quiero</h1>
 
       <Modal
         isOpen={openModal === "first"}
