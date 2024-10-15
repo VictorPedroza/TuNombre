@@ -69,8 +69,8 @@ const Jogos = () => {
 
   // UseEffect para alterar ACROSS e DOWN
   useEffect(() => {
-    const headers = document.querySelectorAll(".kCzJEc .direction .header");
-    headers.forEach(header => {
+    const headers = document.querySelectorAll(".direction .header");
+    headers.forEach((header) => {
       if (header.textContent === "ACROSS") {
         header.textContent = "HORIZONTAL";
       } else if (header.textContent === "DOWN") {
