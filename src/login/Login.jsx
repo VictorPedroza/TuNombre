@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
 
-const USERNAME = "RafaPrieto";
+const USERNAME = "Pedroza";
 const PASSWORD = "TeQuiero";
 
 const Login = ({ onLoginSuccess }) => {
