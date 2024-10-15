@@ -14,11 +14,11 @@ main {
   font-size: 1.5rem;
 }
 
-.kCzJEc .direction .header {
+.direction .header {
   color: var(--terd-color);
 }
 
-.jIIUpQ {
+.clue {
   color: var(--primary-color);
   background-color: rgb(255, 255, 255) !important;
 }
