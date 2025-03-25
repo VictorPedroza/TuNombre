@@ -1,11 +1,11 @@
 :root {
   --primary-color: #d63e24;
-  --primary-light: #FECDD3;
+  --primary-light: rgb(254, 205, 211);
   --secondary-color: #348809;
   --secondary-light: #BBF7D0;
   --light: #f6f6f9;
   --grey: #eee;
-  --dark-gray: #AAAAAA;
+  --dark-grey: #AAAAAA;
   --dark: #363949;
   --text-font: "Roboto", sans-serif;
 }

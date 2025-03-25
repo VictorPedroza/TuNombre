@@ -1,0 +1,215 @@
+:root {
+    --color-bg: linear-gradient(to top, #d987cd, #00d4ff);
+    --line-color: linear-gradient(to left top, #82ff86 20%, #144425, #104e1c);
+    --leaf-color: linear-gradient(to bottom, #ffe785, #faf573, #1a233a 99%);
+    --fall-leaf-color: linear-gradient(to bottom, #ffe785, #faf573, #e2d64f 99%);
+}
+
+.rock {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: var(--dark-grey);
+    padding: .2rem 1rem;
+    border-radius: 50% 50% / 80% 80% 20% 50%;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    width: 76%;
+    display: flex;
+    z-index: 1; /* Rock estará atrás */
+}
+
+.rock p {
+    font-size: 1.5rem;
+    color: var(--dark);
+    font-weight: bold;
+}
+
+.flower {
+    position: relative;
+}
+
+.flower-wrapper {
+    position: absolute;
+    left: 50%;
+    bottom: 4vmin;
+}
+
+.flower_line {
+    width: .67rem;
+    height: 4.3rem;
+    background-image: var(--line-color);
+    border-radius: 4vmin;
+}
+
+.flower-center {
+    position: absolute;
+    top: 1;
+    left: 50%;
+    transform: translateX(-50%) rotate(-10deg);
+    background-image: var(--line-color);
+    border-radius: 50%;
+    width: .67rem;
+    height: .67rem;
+}
+
+.flower_leaf {
+    position: absolute;
+    left: 50%;
+    bottom: 2vmin;
+    transform: translateX(-50%);
+    width: 1.2rem;
+    height: 3.5rem; 
+    background-image: var(--leaf-color);
+    clip-path: ellipse(50% 50% at 50% 50%);
+    transform-origin: center bottom;
+}
+
+.flower_leaf-1 {
+    width: 2.5rem;
+    height: 3.5rem;
+    bottom: 3vmin;
+    border-radius: 50% 50% / 80% 80% 20% 20%;
+    background-image: var(--leaf-color);
+    background-color: #e2d64f;
+    background-image: none;
+}
+
+.flower_leaf-2 {
+    transform: translateX(-50%) rotate(-30deg);
+    animation: flower-leaf-2 5s 1s infinite;
+}
+
+@keyframes flower-leaf-2 {
+    0% {
+        transform: translateX(-50%) rotate(-30deg);
+    }
+    50% {
+        transform: translateX(-50%) rotate(-20deg);
+    }
+    100% {
+        transform: translateX(-50%) rotate(-30deg);
+    }
+}
+
+.flower_leaf-3 {
+    transform: translateX(-50%) rotate(-50deg);
+    animation: flower-leaf-3 5s 1s infinite;
+}
+
+@keyframes flower-leaf-3 {
+    0% {
+        transform: translateX(-50%) rotate(-50deg);
+    }
+    50% {
+        transform: translateX(-50%) rotate(-40deg);
+    }
+    100% {
+        transform: translateX(-50%) rotate(-50deg);
+    }
+}
+
+.flower_leaf-4 {
+    transform: translateX(-50%) rotate(-70deg);
+    animation: flower-leaf-4 5s 1s infinite;
+}
+
+@keyframes flower-leaf-4 {
+    0% {
+        transform: translateX(-50%) rotate(-70deg);
+    }
+    50% {
+        transform: translateX(-50%) rotate(-60deg);
+    }
+    100% {
+        transform: translateX(-50%) rotate(-70deg);
+    }
+}
+
+.flower_leaf-5 {
+    transform: translateX(-50%) rotate(30deg);
+    animation: flower-leaf-5 5s 1s infinite;
+}
+
+@keyframes flower-leaf-5 {
+    0% {
+        transform: translateX(-50%) rotate(30deg);
+    }
+    50% {
+        transform: translateX(-50%) rotate(40deg);
+    }
+    100% {
+        transform: translateX(-50%) rotate(30deg);
+    }
+}
+
+.flower_leaf-6 {
+    transform: translateX(-50%) rotate(50deg);
+    animation: flower-leaf-6 5s 1s infinite;
+}
+
+@keyframes flower-leaf-6 {
+    0% {
+        transform: translateX(-50%) rotate(50deg);
+    }
+    50% {
+        transform: translateX(-50%) rotate(60deg);
+    }
+    100% {
+        transform: translateX(-50%) rotate(50deg);
+    }
+}
+
+.flower_leaf-7 {
+    transform: translateX(-50%) rotate(70deg);
+    animation: flower-leaf-7 5s 1s infinite;
+}
+
+@keyframes flower-leaf-7 {
+    0% {
+        transform: translateX(-50%) rotate(70deg);
+    }
+    50% {
+        transform: translateX(-50%) rotate(80deg);
+    }
+    100% {
+        transform: translateX(-50%) rotate(70deg);
+    }
+}
+
+.flower_leaf-8 {
+    width: 3.5rem;
+    height: 3.5rem;
+    bottom: 6vmin;
+    border-radius: none;
+    clip-path: none;
+    left: -30%;
+    border-radius: 10rem 2rem 10rem 2rem;
+    background-image: var(--fall-leaf-color);
+    transform: rotate(-55deg);
+    position: absolute;
+    z-index: 10; /* Coloca a folha na frente */
+    animation: flower_leaf-fall-8 3s 1s linear forwards;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flower_leaf-8 .content-flower {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(150deg);
+}
+
+@keyframes flower_leaf-fall-8 {
+    0% {
+        transform: rotate(-55deg);
+    }
+    50% {
+        bottom: 3vmin;
+        transform: rotateX(-100deg);
+    }
+    100% {
+        transform: translate(1.2rem, 1.2rem) rotate(210deg);
+    }
+}
