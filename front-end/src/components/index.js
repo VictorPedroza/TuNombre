@@ -1,3 +1,4 @@
 import { Header } from './Header';
+import { Counter } from './Counter';
 
-export { Header }
+export { Header, Counter }
