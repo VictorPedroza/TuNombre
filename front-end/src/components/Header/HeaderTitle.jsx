@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export const Title = () => {
     return (
@@ -7,5 +7,5 @@ export const Title = () => {
                 Tu<span className="text-secondary-500">Nombre</span>
             </Link>
         </div>
-    )
-}
+    );
+};
