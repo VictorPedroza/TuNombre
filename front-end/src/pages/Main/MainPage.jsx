@@ -1,8 +1,19 @@
+import { useEffect, useState } from "react"
 import { Counter } from "@/components"
 import { useCounter } from "@/hooks"
+import { useAPI } from '@/api/'
 
 export const Main = () => {
     const { years, months, days, hours, minutes, seconds } = useCounter("2024-05-13T23:01:00Z")
+    const [data, setData] = useState(null)
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await useAPI.get("api")
+            setData(result)
+        }
+        fetchData()
+    }, [])
 
     return (
         <div className="mx-6 grid sm:grid-cols-[600px_1fr] grid-rows-2 gap-6">
@@ -20,6 +31,7 @@ export const Main = () => {
             </Counter.Root>
             <div>
                 <h1>Photos</h1>
+                {data ? JSON.stringify(data.message) : "Carregando..."}
             </div>
         </div>
     )
