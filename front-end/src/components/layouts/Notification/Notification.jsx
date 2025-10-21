@@ -1,13 +1,17 @@
+// Importando o Contexto da Notificação
 import { NotificationContext } from '@/contexts';
 
+// Importando o Motion (Framework de Animação)
 import { motion } from 'motion/react'
 
+// Importação dos Ícones
 import { LuInfo } from "react-icons/lu";
 import { IoCloseOutline, IoWarningOutline } from "react-icons/io5";
 import { FaCheck } from "react-icons/fa6";
 import { MdReportGmailerrorred } from "react-icons/md";
 import { useContext } from 'react';
 
+// Tipos de Notificação
 const NotificationTypes = {
     standard: { fill: 'bg-gradient-to-r from-gray-100 via-gray-50 to-gray-100', text: 'text-gray-400', Icon: LuInfo, iconFill: 'text-gray-500' },
     success: { fill: 'bg-gradient-to-r from-green-200 via-green-100 to-green-200 border border-green-500', text: 'text-green-400', Icon: FaCheck, iconFill: 'text-green-500' },
@@ -42,14 +46,15 @@ export const Notification = ({
     return (
         <motion.div
             role="alert"
-            className={`block max-w-80 w-full max-h-12 h-full ${fill} rounded-xl overflow-hidden shadow-md`}
+            className={`block max-w-80 w-full max-h-12 h-full ${fill} rounded-xl overflow-hidden shadow-md cursor-pointer`}
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{
                 duration: 0.4,
-                scale: { type: "spring", visualDuration: 0.4, bounce: 0.2 },
+                scale: { type: 'spring', visualDuration: 0.4, bounce: 0.2 },
             }}
-            exit={{ opacity: 0, scale: 0 }}
+            exit={{ y: -48, opacity: 0 }}
+            whileHover={{ scale: 1.05 }}
         >
             <div className="flex w-full h-full items-center px-3 py-2" >
                 <div className='w-8 h-8 flex items-center justify-center'>
