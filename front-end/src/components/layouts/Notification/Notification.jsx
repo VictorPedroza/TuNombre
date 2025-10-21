@@ -1,8 +1,18 @@
- import { LuInfo } from "react-icons/lu";
+import { motion } from 'motion/react'
+
+import { LuInfo } from "react-icons/lu";
 import { IoCloseOutline, IoWarningOutline } from "react-icons/io5";
 import { FaCheck } from "react-icons/fa6";
 import { MdReportGmailerrorred } from "react-icons/md";
 
+
+
+const NotificationTypes = {
+    standard: { fill: 'bg-gradient-to-r from-gray-100 via-gray-50 to-gray-100', text: 'text-gray-400', Icon: LuInfo, iconFill: 'text-gray-500' },
+    success: { fill: 'bg-gradient-to-r from-green-200 via-green-100 to-green-200 border border-green-500', text: 'text-green-400', Icon: FaCheck, iconFill: 'text-green-500' },
+    warning: { fill: 'bg-gradient-to-r from-yellow-200 via-yellow-100 to-yellow-200 border border-yellow-500', text: 'text-yellow-400', Icon: IoWarningOutline, iconFill: 'text-yellow-500' },
+    error: { fill: 'bg-gradient-to-r from-red-200 via-red-100 to-red-200 border border-red-500', text: 'text-red-400', Icon: MdReportGmailerrorred, iconFill: 'text-red-500' }
+}
 
 /**
  * Componente de Notificação
@@ -14,16 +24,9 @@ import { MdReportGmailerrorred } from "react-icons/md";
  *
  * @param {string} title - Título da Notificação
  * @param {string} subtitle - Subtítulo da Notificação
- * @type {string} type - Tipo da Notificação: "Standard", "Success", "Warning", "Error"
+ * @param {string} type - Tipo da Notificação: "Standard", "Success", "Warning", "Error"
  * 
- */
-const NotificationTypes = {
-    standard: { fill: 'bg-gradient-to-r from-gray-100 via-gray-50 to-gray-100', text: 'text-gray-400', Icon: LuInfo, iconFill: 'text-gray-500' },
-    success: { fill: 'bg-gradient-to-r from-green-200 via-green-100 to-green-200 border border-green-500', text: 'text-green-400', Icon: FaCheck, iconFill: 'text-green-500' },
-    warning: { fill: 'bg-gradient-to-r from-yellow-200 via-yellow-100 to-yellow-200 border border-yellow-500', text: 'text-yellow-400', Icon: IoWarningOutline, iconFill: 'text-yellow-500' },
-    error: { fill: 'bg-gradient-to-r from-red-200 via-red-100 to-red-200 border border-red-500', text: 'text-red-400', Icon: MdReportGmailerrorred, iconFill: 'text-red-500' }
-}
-
+**/
 export const Notification = ({
     title = 'Notificação',
     subtitle = 'Subtitulo da Notificação',
@@ -33,7 +36,16 @@ export const Notification = ({
     const { fill, Icon, iconFill, text } = NotificationTypes[type];
 
     return (
-        <div role="alert" className={`block max-w-80 w-full max-h-12 h-full ${fill} rounded-xl overflow-hidden shadow-md`} >
+        <motion.div 
+            role="alert" 
+            className={`block max-w-80 w-full max-h-12 h-full ${fill} rounded-xl overflow-hidden shadow-md`} 
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+                duration: 0.4,
+                scale: { type: "spring", visualDuration: 0.4, bounce: 0.2 },
+            }}
+        >
             <div className="flex w-full h-full items-center px-3 py-2" >
                 <div className='w-8 h-8 flex items-center justify-center'>
                     <Icon className={`w-full h-full ${iconFill}`} />
@@ -48,6 +60,6 @@ export const Notification = ({
                     </button>
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
