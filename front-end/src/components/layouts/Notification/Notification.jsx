@@ -1,11 +1,12 @@
+import { NotificationContext } from '@/contexts';
+
 import { motion } from 'motion/react'
 
 import { LuInfo } from "react-icons/lu";
 import { IoCloseOutline, IoWarningOutline } from "react-icons/io5";
 import { FaCheck } from "react-icons/fa6";
 import { MdReportGmailerrorred } from "react-icons/md";
-
-
+import { useContext } from 'react';
 
 const NotificationTypes = {
     standard: { fill: 'bg-gradient-to-r from-gray-100 via-gray-50 to-gray-100', text: 'text-gray-400', Icon: LuInfo, iconFill: 'text-gray-500' },
@@ -22,29 +23,33 @@ const NotificationTypes = {
  * @since 19/10/2025
  * @version 1.1.0
  *
+ * @param {number} id - ID da Notificação
  * @param {string} title - Título da Notificação
  * @param {string} subtitle - Subtítulo da Notificação
  * @param {string} type - Tipo da Notificação: "Standard", "Success", "Warning", "Error"
  * 
 **/
 export const Notification = ({
+    id,
     title = 'Notificação',
     subtitle = 'Subtitulo da Notificação',
     type = 'standard'
-
 }) => {
+    const { removeNotification } = useContext(NotificationContext);
+
     const { fill, Icon, iconFill, text } = NotificationTypes[type];
 
     return (
-        <motion.div 
-            role="alert" 
-            className={`block max-w-80 w-full max-h-12 h-full ${fill} rounded-xl overflow-hidden shadow-md`} 
+        <motion.div
+            role="alert"
+            className={`block max-w-80 w-full max-h-12 h-full ${fill} rounded-xl overflow-hidden shadow-md`}
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{
                 duration: 0.4,
                 scale: { type: "spring", visualDuration: 0.4, bounce: 0.2 },
             }}
+            exit={{ opacity: 0, scale: 0 }}
         >
             <div className="flex w-full h-full items-center px-3 py-2" >
                 <div className='w-8 h-8 flex items-center justify-center'>
@@ -55,7 +60,7 @@ export const Notification = ({
                         <h1 className={`text-xs ${iconFill} font-semibold`}>{title}</h1>
                         <p className={`text-[10px] ${text}`}>{subtitle}</p>
                     </div>
-                    <button className='w-8 h-8 flex items-center justify-center'>
+                    <button className='w-8 h-8 flex items-center justify-center' onClick={() => removeNotification(id)}>
                         <IoCloseOutline className={`w-full h-full ${iconFill}`} />
                     </button>
                 </div>

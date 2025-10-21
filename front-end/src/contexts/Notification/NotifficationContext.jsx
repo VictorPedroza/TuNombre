@@ -4,12 +4,30 @@ import { createContext, useState } from "react";
 
 import { AnimatePresence } from "motion/react";
 
+/**
+ * Componente de Notificação
+ *
+ * @author Victor Alexandre <victor242206@gmail.com>
+ * @description Contexto para exibição da Notificação
+ * @since 21/10/2025
+ * @version 1.0.0
+ *
+ * @function addNotification 
+ * @param {string} title - Tìtulo da Notificação
+ * @param {string} subtitle - Subtítulo da Notificação
+ * @param {string} type - Tipo da Notificação: "standard", "success", "warning", "error" (Por padrão: "standard") 
+ * @param {string} fixed - Notificação fixa (Por padrão: false)
+ * 
+ * @function removeNotification
+ * @param {number} id - ID da Notificação
+**/
+
 export const NotificationContext = createContext();
 
 export const NotificationProvider = ({ children }) => {
     const [notifications, setNotifications] = useState([]);
 
-    function addNotification({ title, subtitle, type = 'standard' }) {
+    function addNotification({ title, subtitle, type = 'standard', fixed = false }) {
         const newNotification = {
             id: Date.now(),
             title: title,
@@ -19,7 +37,9 @@ export const NotificationProvider = ({ children }) => {
 
         setNotifications((prev) => [...prev, newNotification]);
 
-        setTimeout(() => removeNotification(newNotification.id), 3500);
+        if(!fixed) {
+            setTimeout(() => removeNotification(newNotification.id), 3500);
+        }
     }
 
     function removeNotification(id) {
@@ -27,7 +47,6 @@ export const NotificationProvider = ({ children }) => {
             prev.filter((notification) => notification.id !== id)
         );
     }
-
 
     return (
         <NotificationContext.Provider value={{ addNotification, removeNotification }}>
@@ -38,6 +57,7 @@ export const NotificationProvider = ({ children }) => {
                             return (
                                 <Notification
                                     key={notification.id}
+                                    id={notification.id}
                                     title={notification.title}
                                     subtitle={notification.subtitle}
                                     type={notification.type}
