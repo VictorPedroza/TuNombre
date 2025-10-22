@@ -2,6 +2,7 @@
 import { createContext } from "react";
 
 import { NotificationProvider } from '../Notification/NotifficationContext';
+import { SidebarProvider } from '../Sidebar/SidebarContext';
 
 // Main Context
 export const MainContext = createContext();
@@ -11,7 +12,9 @@ export function MainProvider({ children }) {
     return (
         <MainContext.Provider value={{}}>
             <NotificationProvider>
-                {children}
+                <SidebarProvider>
+                    {children}
+                </SidebarProvider>
             </NotificationProvider>
         </MainContext.Provider>
     )
