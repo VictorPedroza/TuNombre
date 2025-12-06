@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import { Outlet } from 'react-router-dom';
 import { IoMenu, IoClose } from "react-icons/io5";
-import { Sidebar } from '@/components';
 
+import { Sidebar } from '@/components';
 import { routes } from '@/routes';
+import { SidebarContext } from '@/contexts';
 
 /**
  * Layout Principal da Aplicação
@@ -13,15 +14,11 @@ import { routes } from '@/routes';
  * @version 1.0.1
 **/
 export const MainLayout = () => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const toggleSidebar = () => {
-        setIsOpen(!isOpen);
-    }
+    const { isOpen, toggleSidebar } = useContext(SidebarContext);
 
     return (
         <main className='w-full h-full bg-gray-50 lg:rounded-2xl overflow-hidden shadow-xl flex'>
-            <Sidebar.Root isOpen={isOpen}>
+            <Sidebar.Root>
                 <Sidebar.Head />
                 <Sidebar.Navigation>
                     {routes.map((page, index) => (
