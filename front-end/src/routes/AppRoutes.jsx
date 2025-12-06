@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 
 import { AuthLayout, MainLayout } from '@/layouts';
+import { Home } from '@/pages';
 
 /**
  * Controlador das Rotas da Aplicação 
@@ -14,7 +15,7 @@ export const AppRoutes = () => {
         <>
             <Routes>
                 <Route path='/' element={<MainLayout />}>
-                    <Route index element={<h1>Teste</h1>} />
+                    <Route index element={<Home />} />
                 </Route>
                 <Route path="auth" element={<AuthLayout />}>
                     <Route path="login" element={<h1>Login</h1>}/>
