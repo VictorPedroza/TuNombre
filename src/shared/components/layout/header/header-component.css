@@ -1,3 +1,15 @@
 .text-shadow {
     text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
+
+/* header-component.css */
+@media (max-width: 768px) {
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Previne scroll quando menu mobile está aberto */
+body.menu-open {
+  overflow: hidden;
+}

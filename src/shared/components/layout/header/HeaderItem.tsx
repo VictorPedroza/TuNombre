@@ -15,7 +15,7 @@ export const HeaderItem = ({ icon: Icon, text, to }: HeaderItemProps) => {
         className="text-xl font-semibold text-green-600 flex gap-1 items-center h-6 
                group-hover:text-green-600/70 transition-colors"
       >
-        <Icon className="text-red-500 group-hover:text-red-500/70" />
+        <Icon className="text-red-500 group-hover:text-red-500/70 flex md:hidden" />
         <p>{text}</p>
       </Link>
     </li>
