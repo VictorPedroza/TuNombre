@@ -15,8 +15,8 @@ export const Hero = () => {
           Desde 13 de Maio de 2024
         </span>
       </div>
-      <h1 className="text-5xl md:text-7xl font-bold mb-3 leading-none">
-        Tu<span style={{ color: "#DC2626" }}>Nombre</span>
+      <h1 className="text-5xl md:text-7xl font-bold mb-3 text-green-600 leading-none">
+        Tu<span className="text-red-600">Nombre</span>
       </h1>
       <p className="text-stone-500 text-lg md:text-xl mt-4 max-w-md mx-auto leading-relaxed">
         Cada segundo ao seu lado é um presente que guardo com todo o meu coração
