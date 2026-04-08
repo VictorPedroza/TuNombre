@@ -15,6 +15,20 @@ interface HeaderType extends React.FC<HeaderProps> {
   Item: React.FC<HeaderItemProps>;
 }
 
+/**
+ * HeaderComponent - Componente de cabeçalho responsivo (Mobile, Tablet e Desktop).
+ *
+ *
+ * @component
+ * @author Victor Pedroza <victor.pedroza@protonmail.com>
+ * @since 2026-04-07
+ * @version 1.0.0
+ *
+ * @param {Object} props - Propriedades do componente
+ * @param {React.ReactNode} props.children - Itens de navegação renderizados dentro do header
+ *
+ * @returns {JSX.Element}
+ **/
 const HeaderComponent: HeaderType = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
