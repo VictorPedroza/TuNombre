@@ -27,8 +27,13 @@ const HeaderComponent: HeaderType = ({ children }) => {
       <header className="bg-white w-full h-full max-h-14 flex items-center justify-between px-6 py-2 shadow-sm border-b border-black/20 relative z-50">
         {/* Header Title */}
         <div className="h-full flex items-center">
-          <Link to="/" className="text-red-500 text-3xl font-bold text-shadow">
-            Tu<span className="text-green-600">Nombre</span>
+          <Link
+            to="/"
+            className="text-green-600 text-3xl font-bold text-shadow"
+          >
+            <h1 className="text-3xl md:text-3xl font-bold leading-none">
+              Tu<span className="text-red-500">Nombre</span>
+            </h1>
           </Link>
         </div>
 
@@ -38,9 +43,15 @@ const HeaderComponent: HeaderType = ({ children }) => {
           onClick={toggleMenu}
           aria-label="Menu"
         >
-          <span className={`w-6 h-0.5 bg-green-500 rounded-full transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-          <span className={`w-6 h-0.5 bg-green-500 rounded-full transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`} />
-          <span className={`w-6 h-0.5 bg-green-500 rounded-full transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+          <span
+            className={`w-6 h-0.5 bg-green-500 rounded-full transition-all duration-300 ${isMenuOpen ? "rotate-45 translate-y-2" : ""}`}
+          />
+          <span
+            className={`w-6 h-0.5 bg-green-500 rounded-full transition-all duration-300 ${isMenuOpen ? "opacity-0" : ""}`}
+          />
+          <span
+            className={`w-6 h-0.5 bg-green-500 rounded-full transition-all duration-300 ${isMenuOpen ? "-rotate-45 -translate-y-2" : ""}`}
+          />
         </button>
 
         {/* Header NavBar - Desktop */}
@@ -52,7 +63,7 @@ const HeaderComponent: HeaderType = ({ children }) => {
       {/* Menu Mobile - Overlay */}
       <div
         className={`md:hidden fixed inset-0 bg-black/50 z-40 transition-all duration-300 ${
-          isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+          isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
         onClick={toggleMenu}
       />
@@ -60,12 +71,10 @@ const HeaderComponent: HeaderType = ({ children }) => {
       {/* Menu Mobile - Conteúdo */}
       <nav
         className={`md:hidden fixed top-14 right-0 bottom-0 bg-white w-64 shadow-lg z-40 transition-transform duration-300 ${
-          isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <ul className="flex flex-col p-6 gap-4">
-          {children}
-        </ul>
+        <ul className="flex flex-col p-6 gap-4">{children}</ul>
       </nav>
     </>
   );
