@@ -1,5 +1,13 @@
 import { Heart } from "lucide-react";
 
+/**
+ * Hero - Componente de visualização de Inicio na Tela Inicial
+ * 
+ * @author Victor Pedroza <victor.pedroza@protonmail.com>
+ * @since 2026-04-15
+ * @version 1.0.0
+ * 
+ **/
 export const Hero = () => {
   return (
     <>

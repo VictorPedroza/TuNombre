@@ -2,6 +2,14 @@ import { useEffect, useState } from "react";
 
 import { TimerBlock } from './TimerBlock' 
 
+/**
+ * Timer - Componente de contagem de tempo juntos
+ * 
+ * @author Victor Pedroza <victor.pedroza@protonmail.com>
+ * @since 2026-04-15
+ * @version 1.0.0
+ * 
+ **/
 export const Timer = () => {
   const [time, setTime] = useState({
     years: 0,
