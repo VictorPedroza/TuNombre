@@ -1,4 +1,5 @@
 import { Hero } from "@shared/pages/home/components";
+import { Timer } from "./components/timer/Timer";
 
 const HomePage = () => {
   return (
@@ -6,8 +7,8 @@ const HomePage = () => {
       <div className="text-center">
         <Hero />
       </div>
-      <div className="mt-24">
-        <h1></h1>
+      <div>
+        <Timer />
       </div>
     </div>
   );
