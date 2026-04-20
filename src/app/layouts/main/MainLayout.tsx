@@ -17,7 +17,7 @@ const MainLayout = () => {
         ))}
       </Header>
       
-      <main className="p-4">
+      <main className="w-full min-h-screen p-4 bg-zinc-50">
         <Outlet />
       </main>
     </div>
