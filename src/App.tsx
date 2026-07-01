@@ -1,4 +1,4 @@
-import { environment } from "./core/enviroment";
+import { environment } from "@/core/env";
 
 function App() {
   return (
