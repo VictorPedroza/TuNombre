@@ -1,9 +1,9 @@
-import { environment } from "@/core/env";
+import { AppRoutes } from "@/core/routes";
 
 function App() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold">{environment.appName}</h1>
+    <div className="min-h-screen bg-background">
+      <AppRoutes />
     </div>
   );
 }
