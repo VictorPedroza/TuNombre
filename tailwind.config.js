@@ -1,9 +1,21 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        background: {
+          DEFAULT: "#FAFAF8",
+        },
+        foreground: {
+          DEFAULT: "#1A1A1A",
+          muted: "#787870"
+        }
+      },
+    },
   },
   plugins: [],
-}
-
+};
