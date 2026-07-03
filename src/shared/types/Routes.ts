@@ -4,7 +4,7 @@ type Route = {
   path: string;
   label: string;
   component: ComponentType;
-  icon: ComponentType<{ className: string }>;
+  icon?: ComponentType<{ className: string }>;
 };
 
 export type Layout = {
