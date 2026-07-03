@@ -1,14 +1,16 @@
 import { useState } from "react";
-import { Input } from "../../components";
+
 import { Eye, EyeOff } from "lucide-react";
 
+import { Input } from "../../components";
+import { useLoginForm } from "../../hooks/useLoginForm";
+
 export const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { email, setEmail, password, setPassword, handleLogin,error, loading } = useLoginForm();
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <form>
+    <form onSubmit={handleLogin}>
       <div
         className="rounded-2xl border p-8 space-y-5"
         style={{
@@ -28,7 +30,7 @@ export const LoginPage = () => {
         <Input
           label="Senha"
           value={password}
-          type={ showPassword ? "text" : "password"}
+          type={showPassword ? "text" : "password"}
           onChange={setPassword}
           placeholder="Digite a senha"
           autoFocus
@@ -50,9 +52,14 @@ export const LoginPage = () => {
             boxShadow: "0 4px 20px rgba(61,107,79,0.3)",
           }}
         >
-          Entrar
+          {loading ? "Entrando..." : "Entrar"}
         </button>
       </div>
+      {error && (
+        <div className="mt-8 p-3 text-sm text-red-400 bg-red-950/30 border border-red-900/50 rounded-lg text-center">
+          {error}
+        </div>
+      )}
     </form>
   );
 };
