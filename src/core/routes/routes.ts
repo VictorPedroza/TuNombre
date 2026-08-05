@@ -1,8 +1,11 @@
+import { HomeIcon } from "lucide-react";
+
 import type { Layout } from "@/shared/types/Routes";
 
-import { MainLayout } from "@/core/routes/layouts";
-import { HomePage } from "@/modules";
-import { HomeIcon } from "lucide-react";
+import { AuthLayout, MainLayout } from "@/core/routes/layouts";
+
+import { HomePage } from "@/modules/home";
+import { LoginPage } from "@/modules/auth";
 
 export const routes: Layout[] = [
   {
@@ -10,7 +13,15 @@ export const routes: Layout[] = [
     private: false,
     component: MainLayout,
     children: [
-        { path: "", label: "Inicio", component: HomePage, icon: HomeIcon }
+      { path: "", label: "Inicio", component: HomePage, icon: HomeIcon },
+    ],
+  },
+  {
+    path: "/auth",
+    private: false,
+    component: AuthLayout,
+    children: [
+      { path: "login", label: "Login", component: LoginPage },
     ],
   },
 ];

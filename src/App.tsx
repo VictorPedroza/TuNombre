@@ -1,9 +1,12 @@
 import { AppRoutes } from "@/core/routes";
+import { MainContextProvider } from "@/core/contexts";
 
 function App() {
   return (
     <div className="min-h-screen bg-background">
-      <AppRoutes />
+      <MainContextProvider>
+        <AppRoutes />
+      </MainContextProvider>
     </div>
   );
 }

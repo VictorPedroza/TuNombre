@@ -15,17 +15,20 @@ export const HeaderItems = ({
   return (
     <>
       {routes.map((layout) => {
+        if (layout.private) return null;
+        if (layout.path === "/auth") return null;
+
         return layout.children.map((route) => {
           const Icon = route.icon;
 
           return (
             <NavLink
               key={route.path}
-              to={route.path}
+              to={`${layout.path}/${route.path}`}
               onClick={onClick}
               className={className}
             >
-              <Icon className="w-6 h-6 text-red-600" />
+              {Icon && <Icon className="w-6 h-6 text-red-600" />}
               {route.label}
             </NavLink>
           );
