@@ -6,6 +6,8 @@ import { AuthLayout, MainLayout } from "@/core/routes/layouts";
 
 import { HomePage } from "@/modules/home";
 import { LoginPage } from "@/modules/auth";
+import { AdminLayout } from "./layouts/admin/AdminLayout";
+import { AdminPage } from "@/modules/admin/pages/AdminPage";
 
 export const routes: Layout[] = [
   {
@@ -22,6 +24,14 @@ export const routes: Layout[] = [
     component: AuthLayout,
     children: [
       { path: "login", label: "Login", component: LoginPage },
+    ],
+  },
+  {
+    path: "/admin",
+    private: true,
+    component: AdminLayout,
+    children: [
+      { path: "", label: "Dashboard", component: AdminPage },
     ],
   },
 ];
