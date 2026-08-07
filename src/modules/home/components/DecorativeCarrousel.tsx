@@ -23,7 +23,7 @@ export function DecorativeCarousel({ images = [] }: { images: ImageProps[] }) {
     const width = trackRef.current.scrollWidth / 2;
 
     controlsRef.current = animate(x, [0, -width], {
-      duration: 12,
+      duration: 30,
       ease: "linear",
       repeat: Infinity,
     });
