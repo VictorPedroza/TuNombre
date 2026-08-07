@@ -6,6 +6,14 @@ export interface Photo {
   alt: string;
 }
 
+/**
+ * Hook para buscar fotos da galeria no Supabase
+ * 
+ * @author Victor Pedroza <victor.pedroza@protonmail.com>
+ * @since 2026-08-05
+ * @version 1.0.0
+ * 
+ **/
 export const useGaleryPhotos = () => {
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [loading, setLoading] = useState(true);
