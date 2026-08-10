@@ -1,4 +1,4 @@
-import { HomeIcon } from "lucide-react";
+import { HomeIcon, LayoutDashboard } from "lucide-react";
 
 import type { Layout } from "@/shared/types/Routes";
 
@@ -31,7 +31,7 @@ export const routes: Layout[] = [
     private: true,
     component: AdminLayout,
     children: [
-      { path: "", label: "Dashboard", component: AdminPage },
+      { path: "", label: "Overview", component: AdminPage, icon: LayoutDashboard }
     ],
   },
 ];
