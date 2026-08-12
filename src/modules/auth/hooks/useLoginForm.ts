@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { supabase } from "@/shared/lib";
+import { useNavigate } from "react-router-dom";
 
 export const useLoginForm = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -22,7 +25,7 @@ export const useLoginForm = () => {
       if (supabaseError) throw supabaseError;
 
       console.log("Usuário logado: ", data);
-      alert("Usuário logado com sucesso");
+      navigate("/admin");
       // eslint-disable-next-line
     } catch (err: any) {
       if (err.message === "Invalid login credentials") {
