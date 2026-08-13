@@ -6,8 +6,8 @@ import { AdminLayout, AuthLayout, MainLayout } from "@/core/routes/layouts";
 
 import { HomePage } from "@/modules/home";
 import { LoginPage } from "@/modules/auth";
-import { HistoryPage } from "@/modules/history";
 import { AdminPage } from "@/modules/admin";
+import { TimelinePage } from "@/modules/timeline";
 
 export const routes: Layout[] = [
   {
@@ -16,7 +16,7 @@ export const routes: Layout[] = [
     component: MainLayout,
     children: [
       { path: "", label: "Inicio", component: HomePage, icon: HomeIcon },
-      { path: "historia", label: "História", component: HistoryPage, icon: TimerIcon },
+      { path: "historia", label: "História", component: TimelinePage, icon: TimerIcon },
     ],
   },
   {

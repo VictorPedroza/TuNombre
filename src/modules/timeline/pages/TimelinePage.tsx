@@ -6,7 +6,7 @@
  * @version 1.0.0
  * 
  **/
-export const HistoryPage = () => {
+export const TimelinePage = () => {
     return (
         <div className="pt-16">
             <div className="max-w-4xl mx-auto px-6 py-14">
