@@ -5,3 +5,5 @@ export interface TimelineEvent {
   emoji: string;
   image: string;
 }
+
+export const BUCKET_NAME = "timeline-photos";
