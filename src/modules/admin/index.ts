@@ -1,2 +1,1 @@
-export * from "./components"
-export * from "./pages/AdminPage"
+export * from "./pages/OverviewPage"
