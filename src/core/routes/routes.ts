@@ -6,8 +6,8 @@ import { AdminLayout, AuthLayout, MainLayout } from "@/core/routes/layouts";
 
 import { HomePage } from "@/modules/home";
 import { LoginPage } from "@/modules/auth";
-import { AdminPage } from "@/modules/admin";
-import { TimelinePage } from "@/modules/timeline";
+import { AdminTimelinePage, TimelinePage } from "@/modules/timeline";
+import { OverviewPage } from "@/modules/admin";
 
 export const routes: Layout[] = [
   {
@@ -32,7 +32,8 @@ export const routes: Layout[] = [
     private: true,
     component: AdminLayout,
     children: [
-      { path: "", label: "Overview", component: AdminPage, icon: LayoutDashboard }
+      { path: "", label: "Overview", component: OverviewPage, icon: LayoutDashboard },
+      { path: "timeline", label: "Timeline", component: AdminTimelinePage, icon: TimerIcon },
     ],
   },
 ];
