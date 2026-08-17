@@ -1,5 +1,4 @@
-import { AdminHeader } from "@/modules/admin";
-import { Sidebar } from "@/shared/components";
+import { Header, Sidebar } from "@/shared/components";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 
@@ -11,7 +10,7 @@ export const AdminLayout = () => {
       <Sidebar mobileOpen={menuOpen} onClose={() => setMenuOpen(false)} />
 
       <main className="flex-1 lg:ml-60">
-        <AdminHeader onOpenMenu={() => setMenuOpen(true)} />
+        <Header admin onOpenMenu={() => setMenuOpen(true)} />
         <div className="p-6">
           <Outlet />
         </div>
