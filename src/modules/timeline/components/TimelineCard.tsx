@@ -4,7 +4,7 @@ export const TimelineCard = ({ event }: { event: TimelineEvent }) => {
     return (
         <div className="rounded-2xl bg-card border border-border overflow-hidden" style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.04)" }}>
             <div className="aspect-video bg-muted overflow-hidden">
-                <img src={`https://images.unsplash.com/${event.imageId}?w=480&h=270&fit=crop&auto=format`} alt={event.title} className="w-full h-full object-cover" />
+                <img src={event.image} alt={event.title} className="w-full h-full object-cover" />
             </div>
             <div className="p-5">
                 <span className="text-xs text-muted-foreground tracking-widest uppercase">{event.date}</span>
