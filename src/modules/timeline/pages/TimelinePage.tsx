@@ -1,6 +1,6 @@
 import { useTimelineEvents } from "@/modules/timeline/hooks/useTimelineEvents";
-import { SummaryCard, TimelineDesktop, TimelineHead, TimelineMobile } from "../components";
 import { useRelationshipCounter } from "../hooks/useRelationshipCounter";
+import { SummaryCard, TimelineDesktop, TimelineHead, TimelineMobile, UnitCard } from "../components";
 import { START_DATE } from "../types";
 
 /**
@@ -13,7 +13,16 @@ import { START_DATE } from "../types";
  **/
 export const TimelinePage = () => {
     const { events, loading, error } = useTimelineEvents();
-    const { daysUntilAnniversary, totalDaysTogether } = useRelationshipCounter(START_DATE);
+    const { daysUntilAnniversary, totalDaysTogether, elapsed } = useRelationshipCounter(START_DATE);
+
+    const units: { value: number; label: string }[] = [
+        { value: elapsed.years, label: "anos" },
+        { value: elapsed.months, label: "meses" },
+        { value: elapsed.days, label: "dias" },
+        { value: elapsed.hours, label: "horas" },
+        { value: elapsed.minutes, label: "minutos" },
+        { value: elapsed.seconds, label: "segundos" },
+    ];
 
     return (
         <div className="pt-16">
@@ -22,6 +31,11 @@ export const TimelinePage = () => {
                 <TimelineHead />
 
                 <div className="rounded-[20px] bg-stone-50 p-6">
+                    <div className="flex flex-wrap gap-3">
+                        {units.map((item) => (
+                            <UnitCard key={item.label} label={item.label} value={item.value} />
+                        ))}
+                    </div>
 
                     <div className="mt-3 flex flex-wrap gap-3">
                         <SummaryCard text="dias juntos">
