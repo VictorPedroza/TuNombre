@@ -1,6 +1,14 @@
 import { DecorativeCarousel, HomeHero } from "../components";
 import { useGaleryPhotos } from "../hooks/useGaleryPhotos";
 
+/**
+ * Página Inicial da Aplicação 
+ * 
+ * @author Victor Pedroza <victor.pedroza@protonmail.com>
+ * @since 2026-07-03
+ * @version 1.1.0
+ * 
+ **/
 export const HomePage = () => {
   const { loading, photos } = useGaleryPhotos();
 
