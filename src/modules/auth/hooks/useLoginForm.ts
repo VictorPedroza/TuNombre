@@ -2,6 +2,14 @@ import { useState } from "react";
 import { supabase } from "@/shared/lib";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Hook para Autenticação do Usuário
+ * 
+ * @author Victor Pedroza <victor.pedroza@protonmail.com>
+ * @since 2026-07-03
+ * @version 1.0.0
+ *  
+ **/
 export const useLoginForm = () => {
   const navigate = useNavigate();
 
