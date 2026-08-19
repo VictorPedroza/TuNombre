@@ -8,6 +8,14 @@ interface SidebarProps {
   onClose: () => void;
 }
 
+/**
+ * Componde da Barra Lateral (Admin) 
+ * 
+ * @author Victor Pedroza <victor.pedroza@protonmail.com>
+ * @since 2026-08-10
+ * @version 1.0.0
+ * 
+ **/
 export const Sidebar = ({ mobileOpen, onClose }: SidebarProps) => {
   const adminRoutes = useMemo(() => {
     return routes.find((r) => r.path === "/admin")?.children || [];
