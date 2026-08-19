@@ -1,4 +1,4 @@
-import type { TimelineEvent } from "@/shared/types"
+import type { TimelineEvent } from "../../types"
 
 export const TimelineCard = ({ event }: { event: TimelineEvent }) => {
     return (

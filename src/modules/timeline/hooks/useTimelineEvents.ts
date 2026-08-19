@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { supabase } from "@/shared/lib";
-import { BUCKET_NAME, type TimelineEvent } from "@/shared/types";
+import { BUCKET_NAME, type TimelineEvent } from "../types";
 
 /**
  * Hook para buscar eventos da timeline no Supabase

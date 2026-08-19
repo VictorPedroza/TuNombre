@@ -1,4 +1,4 @@
-import type { TimelineEvent } from "@/shared/types";
+import type { TimelineEvent } from "../../types";
 import { TimelineCard } from "./TimelineCard";
 
 export const TimelineDesktop = ({ events }: { events: TimelineEvent[] }) => {

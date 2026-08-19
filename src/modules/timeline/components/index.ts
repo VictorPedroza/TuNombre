@@ -1,3 +1,3 @@
-export * from "./TimelineHead"
-export * from "./TimelineDesktop"
-export * from "./TimelineMobile"
+export * from "./timeline/TimelineHead"
+export * from "./timeline/TimelineDesktop"
+export * from "./timeline/TimelineMobile"
