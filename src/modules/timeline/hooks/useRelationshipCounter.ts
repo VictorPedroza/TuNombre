@@ -7,21 +7,39 @@ interface useRelationshipCounterResult {
   elapsed: Elapsed;
 }
 
+/**
+ * Hook gerar os valores do contador da aplicação
+ *
+ * @author Victor Pedroza <victor.pedroza@protonmail.com>
+ * @since 2026-08-19
+ * @version 1.0.0
+ **/
 export const useRelationshipCounter = (
   startDate: string | Date,
 ): useRelationshipCounterResult => {
+  // Converte a data recebida do Hook
   const start = useMemo(
     () => (startDate instanceof Date ? startDate : new Date(startDate)),
     [startDate],
   );
 
+  // Inicia a variável da momento "atual"
   const [now, setNow] = useState<Date>(new Date());
 
+  // Atualiza o momento "atual"
   useEffect(() => {
     const id = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(id);
   }, []);
 
+  /**
+   * Função auxiliar para buscar qual o próximo aniversário de namoro
+   *
+   * @param {Date} start Data inicial da contagem
+   * @param {Date} now Data do momento "atual"
+   *
+   * @returns {Date} Data do próximo aniversário
+   **/
   const getNextAnniversary = (start: Date, now: Date): Date => {
     const next = new Date(
       now.getFullYear(),
@@ -39,6 +57,14 @@ export const useRelationshipCounter = (
     return next;
   };
 
+  /**
+   * Função auxiliar para buscar quanto tempo se passou
+   *
+   * @param {Date} start Data inicial da contagem
+   * @param {Date} now Data do momento "atual"
+   *
+   * @returns {Elapsed} Dados de Ano, Mês, Dias, Horas, Minutos e Segundos que se passaram desde a data inicial
+   **/
   const getElapsed = (start: Date, now: Date): Elapsed => {
     let years = now.getFullYear() - start.getFullYear();
     let months = now.getMonth() - start.getMonth();
@@ -72,13 +98,16 @@ export const useRelationshipCounter = (
     return { years, months, days, hours, minutes, seconds };
   };
 
+  // Memoriza o quanto se passou, e atualiza a cada tick do relógio
   const elapsed = useMemo(() => getElapsed(start, now), [start, now]);
 
+  // Total de dias que se passaram desde a data inicial
   const totalDaysTogether = useMemo(() => {
     const diffMs = now.getTime() - start.getTime();
     return Math.max(0, Math.floor(diffMs / (1000 * 60 * 60 * 24)));
   }, [start, now]);
 
+  // Total de dias para quando será o próximo aniversário
   const daysUntilAnniversary = useMemo(() => {
     const next = getNextAnniversary(start, now);
     const diffMs = next.getTime() - now.getTime();
