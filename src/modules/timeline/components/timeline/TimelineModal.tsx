@@ -1,4 +1,10 @@
-export const TimelineModal = () => {
+import { AdminButton } from "@/shared/components/admin";
+
+interface TimelineModalProps {
+    closeModal: () => void;
+}
+
+export const TimelineModal = ({closeModal}: TimelineModalProps) => {
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
             <div className="w-full max-w-lg rounded-xl border border-white/10 bg-[#111111] p-6 shadow-2xl">
@@ -64,11 +70,8 @@ export const TimelineModal = () => {
                 </div>
 
                 <div className="mt-6 flex justify-end gap-3">
-                    <button
-                        className="rounded-lg border border-white/10 px-4 py-2 text-sm font-medium text-white/70 transition-colors hover:bg-white/5 disabled:opacity-50"
-                    >
-                        Salvar
-                    </button>
+                    <AdminButton label="Cancelar" onClick={closeModal} variant="outline" />
+                    <AdminButton label="Salvar" onClick={() => alert("Sucess")} />
                 </div>
             </div>
         </div>
