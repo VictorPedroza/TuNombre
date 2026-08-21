@@ -1,4 +1,11 @@
-
+/**
+ * Página de Administração da Linha do Tempo
+ * 
+ * @author Victor Pedroza <victor.pedroza@protonmail.com>
+ * @since 2026-08-18
+ * @version 1.0.0 
+ * 
+ **/
 export const AdminTimelinePage = () => {
     return (
         <div className="min-h-screen px-6 py-10 text-white sm:px-10">
