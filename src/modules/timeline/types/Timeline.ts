@@ -4,6 +4,7 @@ export interface TimelineEvent {
   description: string;
   emoji: string;
   image: string;
+  sort_order: number;
 }
 
 export const BUCKET_NAME = "timeline-photos";
