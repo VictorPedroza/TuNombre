@@ -29,7 +29,7 @@ export const useTimelineEvents = () => {
 
         const { data, error: fetchError } = await supabase
           .from("timeline_events")
-          .select("id, date, title, description, emoji, image, created_at")
+          .select("id, date, title, description, emoji, image, created_at, sort_order")
           .order("created_at", { ascending: true });
 
         if (fetchError) throw fetchError;
@@ -51,10 +51,10 @@ export const useTimelineEvents = () => {
             }
 
             return {
-              id: event.id,
               date: event.date,
               title: event.title,
               description: event.description,
+              sort_order: event.sort_order,
               emoji: event.emoji,
               image: imageUrl,
             };
