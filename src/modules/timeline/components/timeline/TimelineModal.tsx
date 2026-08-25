@@ -85,7 +85,7 @@ export const TimelineModal = ({ closeModal }: TimelineModalProps) => {
 
                 <div className="mt-6 flex justify-end gap-3">
                     <Button label="Cancelar" onClick={closeModal} variant="outline" />
-                    <Button label="Salvar" onClick={() => alert("Sucess")} />
+                    <Button label="Salvar" onClick={() => alert("Sucess")} variant="success" />
                 </div>
             </div>
         </div>
