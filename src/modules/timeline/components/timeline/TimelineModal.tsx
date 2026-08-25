@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { AdminButton } from "@/shared/components/admin";
-import { CheckBox } from "@/shared/components";
+import { Button } from "@/shared/components/";
+import { CheckBox } from "@/shared/components/common/check-box/CheckBox";
 
 interface TimelineModalProps {
     closeModal: () => void;
@@ -84,8 +84,8 @@ export const TimelineModal = ({ closeModal }: TimelineModalProps) => {
                 </div>
 
                 <div className="mt-6 flex justify-end gap-3">
-                    <AdminButton label="Cancelar" onClick={closeModal} variant="outline" />
-                    <AdminButton label="Salvar" onClick={() => alert("Sucess")} />
+                    <Button label="Cancelar" onClick={closeModal} variant="outline" />
+                    <Button label="Salvar" onClick={() => alert("Sucess")} />
                 </div>
             </div>
         </div>
