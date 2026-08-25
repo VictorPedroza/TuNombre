@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { TimelineModal } from "../components";
+import { TimelineModal, TimelineTable } from "../components";
 
 /**
  * Página de Administração da Linha do Tempo
  * 
  * @author Victor Pedroza <victor.pedroza@protonmail.com>
  * @since 2026-08-18
- * @version 1.0.0 
+ * @version 1.1.0 
  * 
  **/
 export const AdminTimelinePage = () => {
@@ -17,7 +17,7 @@ export const AdminTimelinePage = () => {
     }
     return (
         <div className="min-h-screen px-6 py-10 text-white sm:px-10">
-            <div className="mx-auto max-w-6xl">
+            <div className="mx-auto">
                 <div className="mb-8 flex items-start justify-between gap-4">
                     <div>
                         <h1 className="text-2xl font-semibold tracking-tight text-white">
@@ -34,24 +34,12 @@ export const AdminTimelinePage = () => {
                         <span className="text-base leading-none">+</span> Adicionar
                     </button>
                 </div>
-                <div className="overflow-hidden rounded-xl border border-white/10 bg-[#111111]">
-                    <div className="grid grid-cols-[1fr_120px_100px_180px] gap-4 border-b border-white/10 px-6 py-3 text-xs font-medium uppercase tracking-wide text-white/40">
-                        <span>Momento</span>
-                        <span>Data</span>
-                        <span>Ordem</span>
-                        <span className="text-right">Ações</span>
-                    </div>
-                    <div className="px-6 py-10 text-center text-sm text-white/40">
-                        Ainda não há momentos na linha do tempo. Adicione o primeiro.
-                    </div>
-                    <div className="px-6 py-3 text-xs text-white/30 border-t border-white/10">
-                        0 momentos no total
-                    </div>
-                </div>
+                
+                <TimelineTable />
             </div>
 
             {isModalOpen && (
-                <TimelineModal closeModal={() => setIsModalOpen(false)} />   
+                <TimelineModal closeModal={() => setIsModalOpen(false)} />
             )}
         </div>
     )
