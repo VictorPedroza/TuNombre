@@ -1,18 +1,18 @@
-type AdminButtonVariant = "default" | "success" | "outline"
+type ButtonVariant = "default" | "success" | "outline"
 
-interface AdminButtonProps {
+interface ButtonProps {
     label: string;
     onClick: () => void;
-    variant?: AdminButtonVariant;
+    variant?: ButtonVariant;
 }
 
-const styles: Record<AdminButtonVariant, string> = {
+const styles: Record<ButtonVariant, string> = {
     default: "bg-slate-50 text-slate-900 hover:bg-slate-300",
     success: "bg-emerald-700 text-white hover:bg-emerald-600 disabled:opacity-50",
     outline: "border border-white/10 text-white/70 hover:bg-white/5 disabled:opacity-50"
 }
 
-export const AdminButton = ({label, onClick, variant = "default"}: AdminButtonProps) => {
+export const Button = ({label, onClick, variant = "default"}: ButtonProps) => {
     return(
         <button
             onClick={onClick}
