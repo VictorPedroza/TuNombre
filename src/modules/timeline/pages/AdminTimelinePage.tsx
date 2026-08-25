@@ -44,14 +44,14 @@ export const AdminTimelinePage = () => {
                     <div className="px-6 py-10 text-center text-sm text-white/40">
                         Ainda não há momentos na linha do tempo. Adicione o primeiro.
                     </div>
-                    <div className="px-6 py-3 text-xs text-white/30">
+                    <div className="px-6 py-3 text-xs text-white/30 border-t border-white/10">
                         0 momentos no total
                     </div>
                 </div>
             </div>
 
             {isModalOpen && (
-                <TimelineModal />   
+                <TimelineModal closeModal={() => setIsModalOpen(false)} />   
             )}
         </div>
     )
