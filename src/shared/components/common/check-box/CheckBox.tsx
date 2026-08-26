@@ -5,7 +5,7 @@ interface CheckBoxProps {
     label?: string;
     checked: boolean;
     onChange: (checked: boolean) => void;
-    theme?: 'dark' | 'light'; 
+    theme?: 'dark' | 'light';
 }
 
 const styles = {
