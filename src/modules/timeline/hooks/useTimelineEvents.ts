@@ -81,5 +81,33 @@ export const useTimelineEvents = () => {
     };
   }, [reloadKey]);
 
-  return { events, loading, error, refetch };
+  /**
+   * Método para adicionar imagem no Bucket 
+   * 
+   * @param {File} file Arquivo de imagem a ser adicionado no Bucket
+   * 
+   * @returns {Promise<string | null>} Retorna o caminho da imagem
+   **/
+  const uploadTimelineImage = async (file: File): Promise<string | null> => {
+    try {
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}-${fileExt}`;
+      const filePath = `uploads/${fileName}`;
+
+      const { data, error } = await supabase.storage
+        .from(BUCKET_NAME)
+        .upload(filePath, file);
+
+      if(error) {
+        throw error;
+      }
+
+      return data.path;
+    } catch (err) {
+      console.error("Erro ao inserir imagem", err);
+      return null;
+    }
+  }
+
+  return { events, uploadTimelineImage, loading, error, refetch };
 };
