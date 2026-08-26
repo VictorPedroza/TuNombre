@@ -1,21 +1,25 @@
 import { useEffect, useState, useCallback } from "react";
 import { supabase } from "@/shared/lib";
-import { BUCKET_NAME, type TimelineEvent } from "../types";
+import {
+  BUCKET_NAME,
+  type TimelineEvent,
+  TABLE_NAME,
+} from "@timeline/constants";
 
 /**
- * Hook para buscar eventos da timeline no Supabase
+ * Hook para gerenciar os momentos especiais na linha do tempo
  *
  * @author Victor Pedroza <victor.pedroza@protonmail.com>
  * @since 2026-08-14
- * @version 1.3.0
+ * @version 1.4.0
  **/
-export const useTimelineEvents = () => {
+export const useMoments = () => {
   const [events, setEvents] = useState<TimelineEvent[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const [reloadKey, setReloadKey] = useState(0);
 
-  // Permite recarregar manualmente caso necessário
+  // Recarrega manualmente a lista
   const refetch = useCallback(() => {
     setReloadKey((prev) => prev + 1);
   }, []);
@@ -23,13 +27,13 @@ export const useTimelineEvents = () => {
   useEffect(() => {
     let isMounted = true;
 
-    async function loadTimelineEvents() {
+    async function loadMoments() {
       try {
         setLoading(true);
 
         const { data, error: fetchError } = await supabase
           .from("timeline_events")
-          .select("id, date, title, description, emoji, image, created_at, sort_order")
+          .select("id, date, title, description, emoji, image, created_at")
           .order("created_at", { ascending: true });
 
         if (fetchError) throw fetchError;
@@ -51,10 +55,10 @@ export const useTimelineEvents = () => {
             }
 
             return {
+              id: event.id,
               date: event.date,
               title: event.title,
               description: event.description,
-              sort_order: event.sort_order,
               emoji: event.emoji,
               image: imageUrl,
             };
@@ -64,7 +68,7 @@ export const useTimelineEvents = () => {
         }
       } catch (err) {
         if (isMounted) {
-          console.error("Erro ao carregar eventos da timeline:", err);
+          console.error("Erro ao carregar momentos da timeline:", err);
           setError(err as Error);
         }
       } finally {
@@ -74,7 +78,7 @@ export const useTimelineEvents = () => {
       }
     }
 
-    loadTimelineEvents();
+    loadMoments();
 
     return () => {
       isMounted = false;
@@ -82,32 +86,47 @@ export const useTimelineEvents = () => {
   }, [reloadKey]);
 
   /**
-   * Método para adicionar imagem no Bucket 
-   * 
-   * @param {File} file Arquivo de imagem a ser adicionado no Bucket
-   * 
-   * @returns {Promise<string | null>} Retorna o caminho da imagem
-   **/
+   * Faz upload de uma imagem para o Bucket do Supabase Storage
+   */
   const uploadTimelineImage = async (file: File): Promise<string | null> => {
     try {
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}-${fileExt}`;
+      const fileExt = file.name.split(".").pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
       const filePath = `uploads/${fileName}`;
 
       const { data, error } = await supabase.storage
         .from(BUCKET_NAME)
         .upload(filePath, file);
 
-      if(error) {
-        throw error;
-      }
+      if (error) throw error;
 
       return data.path;
     } catch (err) {
-      console.error("Erro ao inserir imagem", err);
+      console.error("Erro ao enviar imagem:", err);
       return null;
     }
-  }
+  };
 
-  return { events, uploadTimelineImage, loading, error, refetch };
+  const deleteById = async (id: string): Promise<null> => {
+    try {
+      setLoading(true);
+
+      const { success, error } = await supabase
+        .from(TABLE_NAME)
+        .delete()
+        .eq("id", id);
+
+      if (error && !success) throw error as Error;
+
+      return null;
+    } catch (err) {
+      console.error(err);
+      setError(err as Error);
+      return null;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { events, deleteById, uploadTimelineImage, loading, error, refetch };
 };

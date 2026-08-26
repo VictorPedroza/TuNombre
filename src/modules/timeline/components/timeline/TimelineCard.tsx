@@ -1,6 +1,18 @@
-import type { TimelineEvent } from "../../types"
+import type { TimelineEvent } from "@timeline/constants"
 
-export const TimelineCard = ({ event }: { event: TimelineEvent }) => {
+interface TimelineCardProps {
+    event: TimelineEvent;
+}
+
+/**
+ * Card de visualização de momentos
+ * 
+ * @author Victor Pedroza <victor.pedroza@protonmail.com>
+ * @since 2026-08-26
+ * @version 1.0.0
+ * 
+ **/
+export const TimelineCard = ({ event }: TimelineCardProps) => {
     return (
         <div className="rounded-2xl bg-card border border-border overflow-hidden" style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.04)" }}>
             {event.image && (
