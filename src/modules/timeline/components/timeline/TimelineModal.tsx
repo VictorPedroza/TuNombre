@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { Button, Input } from "@/shared/components/";
 import { CheckBox } from "@/shared/components/common/check-box/CheckBox";
+import { useMoments } from "@timeline/hooks";
 
 interface TimelineModalProps {
     closeModal: () => void;
 }
 
 export const TimelineModal = ({ closeModal }: TimelineModalProps) => {
+    const { uploadTimelineImage } = useMoments();
+
     const [hasImage, setHasImage] = useState(false);
 
     const [form, setForm] = useState({
@@ -25,7 +28,26 @@ export const TimelineModal = ({ closeModal }: TimelineModalProps) => {
         }));
     }
 
+    const handleSaveTimelineEvent = async () => {
+        let finalImagePath = "";
 
+        try {
+            if(hasImage) {
+                if(form.image) {
+                    const uploadedPath = await uploadTimelineImage(form.image);
+
+                    if(!uploadedPath) return;
+                    finalImagePath = uploadedPath;
+                } else {
+                    return;
+                }
+            }
+
+            console.log(finalImagePath);
+        } catch (err) {
+            console.error(err);
+        }
+    }
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
@@ -119,7 +141,7 @@ export const TimelineModal = ({ closeModal }: TimelineModalProps) => {
 
                 <div className="mt-6 flex justify-end gap-3">
                     <Button label="Cancelar" onClick={closeModal} variant="outline" />
-                    <Button label="Salvar" onClick={() => alert("Sucess")} variant="success" />
+                    <Button label="Salvar" onClick={handleSaveTimelineEvent} variant="success" />
                 </div>
             </div>
         </div>
