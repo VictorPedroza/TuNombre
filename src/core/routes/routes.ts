@@ -16,7 +16,7 @@ export const routes: Layout[] = [
     component: MainLayout,
     children: [
       { path: "", label: "Inicio", component: HomePage, icon: HomeIcon },
-      { path: "historia", label: "História", component: TimelinePage, icon: TimerIcon },
+      { path: "timeline", label: "História", component: TimelinePage, icon: TimerIcon },
     ],
   },
   {
