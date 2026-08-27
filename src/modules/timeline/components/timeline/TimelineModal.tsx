@@ -13,8 +13,18 @@ export const TimelineModal = ({ closeModal }: TimelineModalProps) => {
         date: "",
         title: "",
         description: "",
-        emoji: "✨"
+        emoji: "✨",
+        image: null as File | null
     });
+
+    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0] ?? null;
+        setForm((prev) => ({
+            ...prev,
+            image: file,
+        }));
+    }
+
 
 
     return (
@@ -83,13 +93,27 @@ export const TimelineModal = ({ closeModal }: TimelineModalProps) => {
                     {hasImage && (
                         <div>
                             <label className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-white/40">
-                                Imagem (URL ou caminho no Storage)
+                                Imagem do Momento
                             </label>
+
+                            {form.image && (
+                                <div className="mb-3 h-32 w-48 overflow-hidden rounded-lg border border-white/10 bg-white/5">
+                                    <img
+                                        src={URL.createObjectURL(form.image)}
+                                        alt="Preview"
+                                        className="h-full w-full object-cover"
+                                    />
+                                </div>
+                            )}
+
                             <input
-                                placeholder="https://..."
-                                className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white outline-none placeholder:text-white/30 focus:border-emerald-600"
+                                type="file"
+                                accept="image/*"
+                                className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white file:mr-4 file:rounded-md file:border-0 file:bg-emerald-700 file:px-3 file:py-1 file:text-xs file:font-medium file:text-white hover:file:bg-emerald-600 outline-none focus:border-emerald-600"
+                                onChange={handleImageChange}
                             />
                         </div>
+
                     )}
                 </div>
 
