@@ -101,13 +101,19 @@ export const useMoments = () => {
     }
   };
 
-  const saveTimelineEvent = async (
-    date: string,
-    title: string,
-    emoji: string,
-    description: string,
-    imageUrl: string,
-  ): Promise<boolean> => {
+  const saveTimelineEvent = async ({
+    date,
+    title,
+    emoji,
+    description,
+    imageUrl,
+  }: {
+    date: string;
+    title: string;
+    emoji: string;
+    description: string;
+    imageUrl: string;
+  }): Promise<boolean> => {
     try {
       setLoading(true);
 
@@ -133,26 +139,11 @@ export const useMoments = () => {
     }
   };
 
-  const deleteById = async (id: string): Promise<null> => {
-    try {
-      setLoading(true);
-
-      const { success, error } = await supabase
-        .from(TABLE_NAME)
-        .delete()
-        .eq("id", id);
-
-      if (error && !success) throw error as Error;
-
-      return null;
-    } catch (err) {
-      console.error(err);
-      setError(err as Error);
-      return null;
-    } finally {
-      setLoading(false);
-    }
+  return {
+    events,
+    saveTimelineEvent,
+    uploadTimelineImage,
+    loading,
+    error,
   };
-
-  return { events, deleteById, saveTimelineEvent, uploadTimelineImage, loading, error };
 };
