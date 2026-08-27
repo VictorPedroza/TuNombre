@@ -8,7 +8,7 @@ interface TimelineModalProps {
 }
 
 export const TimelineModal = ({ closeModal }: TimelineModalProps) => {
-    const { uploadTimelineImage } = useMoments();
+    const { uploadTimelineImage, saveTimelineEvent } = useMoments();
 
     const [hasImage, setHasImage] = useState(false);
 
@@ -32,18 +32,25 @@ export const TimelineModal = ({ closeModal }: TimelineModalProps) => {
         let finalImagePath = "";
 
         try {
-            if(hasImage) {
-                if(form.image) {
+            if (hasImage) {
+                if (form.image) {
                     const uploadedPath = await uploadTimelineImage(form.image);
 
-                    if(!uploadedPath) return;
+                    if (!uploadedPath) return;
                     finalImagePath = uploadedPath;
                 } else {
                     return;
                 }
             }
 
-            console.log(finalImagePath);
+            await saveTimelineEvent({
+                date: form.date,
+                title: form.title,
+                description: form.description,
+                emoji: form.emoji,
+                imageUrl: finalImagePath,
+            });
+            closeModal();
         } catch (err) {
             console.error(err);
         }
@@ -98,7 +105,7 @@ export const TimelineModal = ({ closeModal }: TimelineModalProps) => {
                         <Input
                             label="Descrição"
                             placeholder="Um pequeno texto sobre nosso momento..."
-                            value={form.title}
+                            value={form.description}
                             onChange={(value) =>
                                 setForm((prev) => ({ ...prev, description: value }))
                             }
