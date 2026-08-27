@@ -4,6 +4,7 @@ interface ButtonProps {
     label: string;
     onClick: () => void;
     variant?: ButtonVariant;
+    disabled?: boolean;
 }
 
 const styles: Record<ButtonVariant, string> = {
@@ -21,11 +22,12 @@ const styles: Record<ButtonVariant, string> = {
  * @version 1.0.1
  * 
  **/
-export const Button = ({label, onClick, variant = "default"}: ButtonProps) => {
+export const Button = ({label, onClick, variant = "default", disabled}: ButtonProps) => {
     return(
         <button
             onClick={onClick}
             className={`rounded-lg py-2 px-4 text-sm font-medium transition-colors disabled:opacity-50 ${styles[variant]}`}
+            disabled={disabled}
         >
             {label}
         </button>
