@@ -2,8 +2,8 @@ import { useState } from "react";
 
 import { Eye, EyeOff } from "lucide-react";
 
-import { Input } from "../../components";
 import { useLoginForm } from "../../hooks/useLoginForm";
+import { Input } from "@/shared/components";
 
 /**
  * Página de Login da Aplicaçãp
