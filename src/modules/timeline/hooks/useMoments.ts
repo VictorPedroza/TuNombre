@@ -122,7 +122,6 @@ export const useMoments = () => {
       ]);
 
       if (error) throw error;
-      refetch();
 
       return true;
     } catch (err) {
