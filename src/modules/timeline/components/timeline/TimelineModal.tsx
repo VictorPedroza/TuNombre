@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "@/shared/components/";
+import { Button, Input } from "@/shared/components/";
 import { CheckBox } from "@/shared/components/common/check-box/CheckBox";
 
 interface TimelineModalProps {
@@ -8,6 +8,14 @@ interface TimelineModalProps {
 
 export const TimelineModal = ({ closeModal }: TimelineModalProps) => {
     const [hasImage, setHasImage] = useState(false);
+
+    const [form, setForm] = useState({
+        date: "",
+        title: "",
+        description: "",
+        emoji: "✨"
+    });
+
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
@@ -22,54 +30,56 @@ export const TimelineModal = ({ closeModal }: TimelineModalProps) => {
                 <div className="mt-6 space-y-4">
                     <div className="grid grid-cols-[1fr_90px] gap-3">
                         <div>
-                            <label className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-white/40">
-                                Data
-                            </label>
-                            <input
-                                placeholder="Ex: Março 2023"
-                                className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white outline-none placeholder:text-white/30 focus:border-emerald-600"
+                            <Input
+                                label="Data"
+                                placeholder="Ex: Março 2025"
+                                value={form.date}
+                                onChange={(value) =>
+                                    setForm((prev) => ({ ...prev, date: value }))
+                                }
                             />
                         </div>
                         <div>
-                            <label className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-white/40">
-                                Emoji
-                            </label>
-                            <input
-                                placeholder="✨"
-                                className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-center text-sm text-white outline-none placeholder:text-white/30 focus:border-emerald-600"
+                            <Input
+                                label="Emoji"
+                                value={form.emoji}
+                                onChange={(value) =>
+                                    setForm((prev) => ({ ...prev, emoji: value }))
+                                }
+                                className="text-center"
                             />
                         </div>
                     </div>
 
                     <div>
-                        <label className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-white/40">
-                            Título
-                        </label>
-                        <input
+                        <Input
+                            label="Titulo"
                             placeholder="Ex: Primeiro Olhar"
-                            className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white outline-none placeholder:text-white/30 focus:border-emerald-600"
+                            value={form.title}
+                            onChange={(value) =>
+                                setForm((prev) => ({ ...prev, title: value }))
+                            }
                         />
                     </div>
 
                     <div>
-                        <label className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-white/40">
-                            Descrição
-                        </label>
-                        <textarea
-                            rows={5}
-                            placeholder="Um pequeno texto sobre este momento"
-                            className="w-full resize-none rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white outline-none placeholder:text-white/30 focus:border-emerald-600"
+                        <Input
+                            label="Descrição"
+                            placeholder="Um pequeno texto sobre nosso momento..."
+                            value={form.title}
+                            onChange={(value) =>
+                                setForm((prev) => ({ ...prev, description: value }))
+                            }
+                            textarea
                         />
                     </div>
 
-                    {/* Checkbox estilizado */}
                     <CheckBox
                         checked={hasImage}
                         onChange={setHasImage}
                         label="Adicionar imagem a esse momento"
                     />
 
-                    {/* Campo renderizado condicionalmente */}
                     {hasImage && (
                         <div>
                             <label className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-white/40">
