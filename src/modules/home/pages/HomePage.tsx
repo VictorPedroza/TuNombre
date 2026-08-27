@@ -1,4 +1,4 @@
-import { DecorativeCarousel, HomeHero } from "../components";
+import { DecorativeCarousel, HomeHero, HomeQuote } from "../components";
 import { useGaleryPhotos } from "../hooks/useGaleryPhotos";
 
 /**
@@ -6,7 +6,7 @@ import { useGaleryPhotos } from "../hooks/useGaleryPhotos";
  * 
  * @author Victor Pedroza <victor.pedroza@protonmail.com>
  * @since 2026-07-03
- * @version 1.1.0
+ * @version 1.2.0
  * 
  **/
 export const HomePage = () => {
@@ -27,22 +27,10 @@ export const HomePage = () => {
       ) : (
         <DecorativeCarousel images={photos} />
       )}
-      <section className="max-w-5xl mx-auto px-6 mb-14 mt-14">
-        <div
-          className="rounded-2xl bg-card border border-border p-8 md:p-12 text-center"
-          style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.04)" }}
-        >
-          <p
-            className="text-2xl md:text-3xl text-foreground leading-relaxed serif italic"
-            style={{ fontWeight: 400 }}
-          >
-            "oggi, domani e tra dieci anni."
-          </p>
-          <p className="text-muted-foreground text-sm mt-5 tracking-wide">
-            feito com amor, especialmente para você
-          </p>
-        </div>
-      </section>
+      <HomeQuote
+        quote="oggi, domani e tra dieci anni."
+        description="feito com amor, especialmente para você"
+      />
     </div>
   );
 };
