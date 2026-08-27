@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "@/shared/lib";
 import {
   BUCKET_NAME,
@@ -17,12 +17,6 @@ export const useMoments = () => {
   const [events, setEvents] = useState<TimelineEvent[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const [reloadKey, setReloadKey] = useState(0);
-
-  // Recarrega manualmente a lista
-  const refetch = useCallback(() => {
-    setReloadKey((prev) => prev + 1);
-  }, []);
 
   useEffect(() => {
     let isMounted = true;
@@ -83,7 +77,7 @@ export const useMoments = () => {
     return () => {
       isMounted = false;
     };
-  }, [reloadKey]);
+  }, []);
 
   /**
    * Faz upload de uma imagem para o Bucket do Supabase Storage
@@ -104,6 +98,39 @@ export const useMoments = () => {
     } catch (err) {
       console.error("Erro ao enviar imagem:", err);
       return null;
+    }
+  };
+
+  const saveTimelineEvent = async (
+    date: string,
+    title: string,
+    emoji: string,
+    description: string,
+    imageUrl: string,
+  ): Promise<boolean> => {
+    try {
+      setLoading(true);
+
+      const { error } = await supabase.from(TABLE_NAME).insert([
+        {
+          date,
+          title,
+          emoji,
+          description,
+          image: imageUrl,
+        },
+      ]);
+
+      if (error) throw error;
+      refetch();
+
+      return true;
+    } catch (err) {
+      console.error("Erro ao salvar momento:", err);
+      setError(err as Error);
+      return false;
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -128,5 +155,5 @@ export const useMoments = () => {
     }
   };
 
-  return { events, deleteById, uploadTimelineImage, loading, error, refetch };
+  return { events, deleteById, saveTimelineEvent, uploadTimelineImage, loading, error };
 };
