@@ -1,5 +1,13 @@
 import { Link } from "react-router-dom"; 
 
+/**
+ * Componente de visualização de Página Não Encontrada
+ * 
+ * @author Victor Pedroza <victor.pedroza@protonmail.com>
+ * @since 2026-07-02
+ * @version 1.1.0
+ * 
+ **/
 export const NotFound = () => {
   return (
     <div className="min-h-screen bg-[#faf9f5] flex flex-col">

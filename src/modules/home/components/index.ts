@@ -1,2 +1,3 @@
 export * from "./HomeHero";
-export * from "./DecorativeCarrousel";
+export * from "./HomeQuote";
+export * from "./carrousel/DecorativeCarrousel";

@@ -2,9 +2,17 @@ import { useState } from "react";
 
 import { Eye, EyeOff } from "lucide-react";
 
-import { Input } from "../../components";
 import { useLoginForm } from "../../hooks/useLoginForm";
+import { Input } from "@/shared/components";
 
+/**
+ * Página de Login da Aplicaçãp
+ * 
+ * @author Victor Pedroza <victor.pedroza@protonmail.com>
+ * @since 2026-07-03
+ * @version 1.0.0
+ * 
+ **/
 export const LoginPage = () => {
   const { email, setEmail, password, setPassword, handleLogin,error, loading } = useLoginForm();
   const [showPassword, setShowPassword] = useState(false);

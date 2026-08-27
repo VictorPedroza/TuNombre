@@ -2,6 +2,14 @@ import React from "react";
 import { motion, type Transition } from "framer-motion";
 import { wavesPath } from "./wavesPath";
 
+/**
+ * Componente do Rodapé
+ * 
+ * @author Victor Pedroza <victor.pedroza@protonmail.com
+ * @since 2025-08-07
+ * @version 1.0.0
+ * 
+ **/
 export const Footer: React.FC = () => {
   const waveTransition: Transition = {
     duration: 15,

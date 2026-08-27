@@ -1,21 +1,22 @@
-import { HomeIcon, LayoutDashboard } from "lucide-react";
+import { HomeIcon, LayoutDashboard, TimerIcon } from "lucide-react";
 
 import type { Layout } from "@/shared/types/Routes";
 
-import { AuthLayout, MainLayout } from "@/core/routes/layouts";
+import { AdminLayout, AuthLayout, MainLayout } from "@/core/routes/layouts";
 
 import { HomePage } from "@/modules/home";
 import { LoginPage } from "@/modules/auth";
-import { AdminLayout } from "./layouts/admin/AdminLayout";
-import { AdminPage } from "@/modules/admin/pages/AdminPage";
+import { AdminTimelinePage, TimelinePage } from "@/modules/timeline";
+import { OverviewPage } from "@/modules/admin";
 
 export const routes: Layout[] = [
   {
-    path: "/",
+    path: "",
     private: false,
     component: MainLayout,
     children: [
       { path: "", label: "Inicio", component: HomePage, icon: HomeIcon },
+      { path: "timeline", label: "História", component: TimelinePage, icon: TimerIcon },
     ],
   },
   {
@@ -31,7 +32,8 @@ export const routes: Layout[] = [
     private: true,
     component: AdminLayout,
     children: [
-      { path: "", label: "Overview", component: AdminPage, icon: LayoutDashboard }
+      { path: "", label: "Overview", component: OverviewPage, icon: LayoutDashboard },
+      { path: "timeline", label: "Timeline", component: AdminTimelinePage, icon: TimerIcon },
     ],
   },
 ];

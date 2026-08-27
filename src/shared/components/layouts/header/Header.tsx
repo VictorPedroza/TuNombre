@@ -3,10 +3,29 @@ import { useState } from "react";
 
 import { routes } from "@/core/routes/routes";
 
-import { DesktopMenu, MenuButton, MobileMenu } from "./components";
+import { AdminHeader, DesktopMenu, MenuButton, MobileMenu } from "./components";
 
-export const Header = () => {
+interface HeaderProps {
+  admin?: boolean;
+  onOpenMenu?: () => void;
+}
+
+/**
+ * Componente do Cabeçalho da Aplicação
+ * 
+ * @author Victor Pedroza <victor.pedroza@protonmail.com>
+ * @since 2026-08-07
+ * @version 1.1.0
+ * 
+ **/
+export const Header = ({ admin = false, onOpenMenu = () => { } }: HeaderProps) => {
   const [open, setOpen] = useState(false);
+
+  if (admin) {
+    return (
+      <AdminHeader onOpenMenu={onOpenMenu} />
+    )
+  }
 
   const toggleMenu = () => {
     setOpen(!open);
