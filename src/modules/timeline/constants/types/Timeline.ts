@@ -14,3 +14,12 @@ export interface SaveTimelineEventDTO {
     emoji: string;
     image?: string;
 }
+
+export interface UpdadteTimelineEventDTO {
+    id: string;
+    date?: string;
+    title?: string; 
+    description?: string;
+    emoji?: string;
+    image?: string;
+}
