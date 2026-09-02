@@ -1,4 +1,4 @@
-import { HomeIcon, LayoutDashboard, TimerIcon } from "lucide-react";
+import { Gamepad, HomeIcon, LayoutDashboard, TimerIcon } from "lucide-react";
 
 import type { Layout } from "@/shared/types/Routes";
 
@@ -8,6 +8,7 @@ import { HomePage } from "@/modules/home";
 import { LoginPage } from "@/modules/auth";
 import { AdminTimelinePage, TimelinePage } from "@/modules/timeline";
 import { OverviewPage } from "@/modules/admin";
+import { GamePage } from "@/modules/games";
 
 export const routes: Layout[] = [
   {
@@ -36,4 +37,12 @@ export const routes: Layout[] = [
       { path: "timeline", label: "Timeline", component: AdminTimelinePage, icon: TimerIcon },
     ],
   },
+  {
+    path: "/games",
+    private: false,
+    component: MainLayout,
+    children: [
+      { path: "", label: "Jogos", component: GamePage, icon: Gamepad}
+    ]
+  }
 ];
