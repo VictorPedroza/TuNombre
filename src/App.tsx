@@ -1,5 +1,5 @@
-import { AppRoutes } from "@/core/routes";
-import { MainContextProvider } from "@/core/contexts";
+import { AppRoutes } from "@core/routes";
+import { MainContextProvider } from "@core/contexts";
 
 function App() {
   return (

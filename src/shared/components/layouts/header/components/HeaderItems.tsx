@@ -1,5 +1,6 @@
-import type { Layout } from "@/shared/types/routes";
 import { NavLink } from "react-router-dom";
+
+import type { Layout } from "@shared/constants";
 
 type HeaderItemsProps = {
   routes: Layout[];

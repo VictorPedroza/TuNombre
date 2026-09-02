@@ -1,6 +1,8 @@
-import { routes } from "@/core/routes/routes";
-import { Menu } from "lucide-react"
 import { useLocation } from "react-router-dom";
+
+import { Menu } from "lucide-react"
+
+import { routes } from "@core/routes/routes";
 
 interface AdminHeaderProps {
     onOpenMenu: () => void;

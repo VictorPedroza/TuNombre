@@ -1,6 +1,7 @@
-import { Header, Sidebar } from "@/shared/components";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
+
+import { Header, Sidebar } from "@shared/components";
 
 export const AdminLayout = () => {
   const [menuOpen, setMenuOpen] = useState(true);

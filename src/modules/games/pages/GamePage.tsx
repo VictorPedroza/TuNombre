@@ -1,5 +1,6 @@
-import { GameCard } from "../components/card/GameCard"
-import { games } from "@games/constants"
+import { games } from "@modules/games/constants"
+
+import { GameCard } from "../components/"
 
 export const GamePage = () => {
     return (

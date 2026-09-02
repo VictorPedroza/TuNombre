@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Button, Input } from "@/shared/components/";
-import { CheckBox } from "@/shared/components/common/check-box/CheckBox";
-import { useMoments } from "@timeline/hooks";
-import { type TimelineEvent } from "@timeline/constants"; // Ajuste o caminho do seu type
+import { Button, Input, CheckBox } from "@shared/components/";
+import { useMoments } from "@modules/timeline/hooks";
+import { type TimelineEvent } from "@modules/timeline/constants"; // Ajuste o caminho do seu type
 
 interface TimelineModalProps {
     closeModal: () => void;

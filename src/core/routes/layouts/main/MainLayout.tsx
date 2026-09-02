@@ -1,5 +1,6 @@
-import { Footer, Header } from "@/shared/components";
 import { Outlet } from "react-router-dom";
+
+import { Footer, Header } from "@shared/components";
 
 /**
  * Layout Principal da Aplicação 

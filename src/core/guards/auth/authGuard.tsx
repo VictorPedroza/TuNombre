@@ -1,5 +1,6 @@
-import { useAuth } from "@/shared/hooks";
 import { Navigate, Outlet } from "react-router-dom";
+
+import { useAuth } from "@shared/hooks";
 
 export const AuthGuard = () => {
   const { user, loading } = useAuth();

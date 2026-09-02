@@ -1,4 +1,5 @@
-import type { Layout } from "@/shared/types/routes";
+import type { Layout } from "@shared/constants";
+
 import { HeaderItems } from "./HeaderItems";
 
 type DesktopMenuProps = {

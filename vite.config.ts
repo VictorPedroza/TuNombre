@@ -12,8 +12,9 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
-      "@timeline": path.resolve(__dirname, "./src/modules/timeline"),
-      "@games": path.resolve(__dirname, "./src/modules/games"),
+      "@shared": path.resolve(__dirname, "./src/shared"),
+      "@core": path.resolve(__dirname, "./src/core"),
+      "@modules": path.resolve(__dirname, "./src/modules")
     }
   }
 })

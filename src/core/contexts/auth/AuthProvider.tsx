@@ -1,7 +1,8 @@
-import { supabase } from "@/shared/lib";
-import type { User } from "@supabase/supabase-js";
 import { useEffect, useState, type ReactNode } from "react";
-import { AuthContext } from "./AuthContext";
+import type { User } from "@supabase/supabase-js";
+
+import { supabase } from "@shared/lib";
+import { AuthContext } from "@core/contexts";
 
 type AuthProviderType = {
   children: ReactNode;

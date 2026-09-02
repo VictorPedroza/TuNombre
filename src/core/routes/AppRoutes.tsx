@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 
-import { routes } from "@/core/routes/routes";
-import { NotFound } from "@/shared/components";
+import { routes } from "@core/routes/routes";
+import { NotFound } from "@shared/components";
 
-import { AuthGuard } from "../guards";
+import { AuthGuard } from "@core/guards";
 
 /**
  * AppRoutes - Componente responsável por renderizar as rotas da aplicação, incluindo layouts e páginas.

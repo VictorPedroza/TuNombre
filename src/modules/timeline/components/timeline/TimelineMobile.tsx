@@ -1,5 +1,5 @@
-import { TimelineCard } from "@timeline/components"
-import { type TimelineEvent } from "@timeline/constants"
+import { TimelineCard } from "@modules/timeline/components"
+import { type TimelineEvent } from "@modules/timeline/constants"
 
 interface TimelineMobileProps {
     events: TimelineEvent[];

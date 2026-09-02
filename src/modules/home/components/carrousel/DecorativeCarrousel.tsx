@@ -1,5 +1,6 @@
-import { motion, useMotionValue, animate } from "motion/react";
 import { useEffect, useRef, useState } from "react";
+import { motion, useMotionValue, animate } from "motion/react";
+
 import { DecorativeCard } from "./DecorativeCard";
 
 type ImageProps = {

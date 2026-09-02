@@ -1,7 +1,8 @@
-import { NavLink } from "react-router-dom";
 import { useState } from "react";
 
-import { routes } from "@/core/routes/routes";
+import { NavLink } from "react-router-dom";
+
+import { routes } from "@core/routes/routes";
 
 import { AdminHeader, DesktopMenu, MenuButton, MobileMenu } from "./components";
 

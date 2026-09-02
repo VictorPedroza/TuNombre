@@ -1,5 +1,6 @@
-import type { GamePreview } from "@games/constants";
 import { useNavigate } from "react-router-dom";
+
+import type { GamePreview } from "@modules/games/constants";
 
 export const GameCard = ({
     title,

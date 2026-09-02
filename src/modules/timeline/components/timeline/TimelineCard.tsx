@@ -1,4 +1,4 @@
-import type { TimelineEvent } from "@timeline/constants"
+import type { TimelineEvent } from "@modules/timeline/constants"
 
 interface TimelineCardProps {
     event: TimelineEvent;

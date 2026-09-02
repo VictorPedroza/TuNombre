@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 
-import { environment } from '@/core/env';
+import { environment } from '@core/env';
 
 /**
  * Instância do supabase

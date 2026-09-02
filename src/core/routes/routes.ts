@@ -1,18 +1,14 @@
-// Icons
 import { Gamepad, HomeIcon, LayoutDashboard, TimerIcon } from "lucide-react";
 
-// Types
-import type { Layout } from "@/shared/types";
+import type { Layout } from "@shared/constants";
 
-// Layouts
 import { AdminLayout, AuthLayout, MainLayout } from "@/core/routes/layouts";
 
-// Pages
-import { HomePage } from "@/modules/home";
-import { LoginPage } from "@/modules/auth";
-import { AdminTimelinePage, TimelinePage } from "@/modules/timeline";
-import { OverviewPage } from "@/modules/admin";
-import { GamePage, WordleGame } from "@/modules/games";
+import { HomePage } from "@modules/home";
+import { LoginPage } from "@modules/auth";
+import { AdminTimelinePage, TimelinePage } from "@modules/timeline";
+import { OverviewPage } from "@modules/admin";
+import { GamePage, WordleGame } from "@modules/games";
 
 /**
  * Constante que define as rotas da aplicação, incluindo layouts e páginas.
