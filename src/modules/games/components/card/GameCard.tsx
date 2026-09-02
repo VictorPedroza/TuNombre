@@ -7,7 +7,7 @@ export const GameCard = ({
 }: GamePreview) => {
     return (
         <button
-            className="text-left rounded-2xl bg-slate-50 shadow border border-border overflow-hidden transition-all duration-200 hover:-translate-y-0.5 group"
+            className="text-left rounded-2xl bg-background shadow border border-border overflow-hidden transition-all duration-200 hover:-translate-y-0.5 group"
         >
             <div className="border-b border-border bg-slate-100/30">
                 <Preview />
