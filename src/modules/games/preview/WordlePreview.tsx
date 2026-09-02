@@ -18,7 +18,7 @@ export const WordlePreview = () => {
                     {row.map((color, index) => (
                         <div
                             key={index}
-                            className={`h-5 w-5 rounded-[3px] ${color ? colors[color] : "bg-white"
+                            className={`h-5 w-5 ${color ? colors[color] : "bg-white"
                                 } ${color
                                     ? "border-transparent"
                                     : "border-[1.5px] border-[rgba(26,26,26,0.14)]"
