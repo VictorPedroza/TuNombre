@@ -1,10 +1,7 @@
 import { GameCard } from "../components/card/GameCard"
-import type { GamePreview } from "@games/constants";
-import { WordlePreview } from "@games/preview";
+import { games } from "@games/constants"
 
 export const GamePage = () => {
-    const games: GamePreview[] = [{ title: "Wordle", description: "Adivinhe a palavra em 6 tentativas.", preview: WordlePreview }];
-
     return (
         <div className="pt-10">
             <div className="max-w-4xl mx-auto px-6 py-14">

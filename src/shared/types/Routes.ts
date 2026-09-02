@@ -5,6 +5,7 @@ type Route = {
   label: string;
   component: ComponentType;
   icon?: ComponentType<{ className: string }>;
+  navigation?: boolean;
 };
 
 export type Layout = {
