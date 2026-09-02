@@ -1,13 +1,18 @@
 import type { GamePreview } from "@games/constants";
+import { useNavigate } from "react-router-dom";
 
 export const GameCard = ({
     title,
     description,
     preview: Preview,
+    to
 }: GamePreview) => {
+    const navigate = useNavigate();
+
     return (
         <button
             className="text-left rounded-2xl bg-background shadow border border-border overflow-hidden transition-all duration-200 hover:-translate-y-0.5 group"
+            onClick={() => navigate(to)}
         >
             <div className="border-b border-border bg-slate-100/30">
                 <Preview />
