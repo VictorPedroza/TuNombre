@@ -1,4 +1,5 @@
 export * from "./games";
+export * from "./wordle";
 
 import type { ComponentType } from "react";
 
