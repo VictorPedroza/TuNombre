@@ -1,18 +1,25 @@
 import { NavLink } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { useState } from "react";
 
 import { MAX_GUESSES } from "@modules/games/constants";
 import { useWordle } from "@modules/games/hooks";
 
 import { WordleBoard } from "./components/WordleBoard";
 import { WordleFeedback } from "./components/WordleFeedback";
+import { WordleHistory } from "./components/WordleHistory";
 
 export const WordleGame = () => {
     const {
         guesses,
         currentGuess,
         gameStatus,
+        restartGame,
+        canRestart,
+        SOLUTION,
     } = useWordle();
+    const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+    const [isFeedbackOpen, setIsFeedbackOpen] = useState(true);
 
     return (
         <div className="pt-10">
@@ -40,7 +47,20 @@ export const WordleGame = () => {
                 />
                 <WordleFeedback
                     gameStatus={gameStatus}
+                    solution={SOLUTION}
+                    canRestart={canRestart}
+                    isOpen={isFeedbackOpen}
+                    onClose={() => setIsFeedbackOpen(false)}
+                    onRestart={() => {
+                        restartGame();
+                        setIsFeedbackOpen(true);
+                    }}
+                    onViewHistory={() => setIsHistoryOpen(true)}
                 />
+
+                {isHistoryOpen && (
+                    <WordleHistory setIsOpen={setIsHistoryOpen} />
+                )}
             </div>
         </div>
     );
