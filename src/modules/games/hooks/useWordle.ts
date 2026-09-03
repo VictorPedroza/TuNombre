@@ -1,13 +1,30 @@
 import { useEffect, useState } from "react";
 
 import {
+  EPOCH,
   MAX_GUESSES,
-  SOLUTION,
   WORD_LENGTH,
+  WORDS,
   type GameStatus,
 } from "@modules/games/constants";
 
 export const useWordle = () => {
+  function getDailyWord(): string {
+  const today = new Date().getTime();
+  const msInDay = 1000 * 60 * 60 * 24;
+  
+  // Calcula quantos dias se passaram desde a data inicial
+  const daysPassed = Math.floor((today - EPOCH) / msInDay);
+
+  // O operador módulo (%) garante que se os dias passarem do tamanho do array,
+  // ele volta para o início (comportamento circular seguro).
+  const index = daysPassed % WORDS.length;
+  
+  return WORDS[index].toUpperCase();
+}
+
+  const SOLUTION: string = getDailyWord();
+
   const [guesses, setGuesses] = useState<string[]>([]);
   const [currentGuess, setCurrentGuess] = useState<string>("");
   const [gameStatus, setGameStatus] = useState<GameStatus>("playing");
@@ -70,12 +87,14 @@ export const useWordle = () => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentGuess, gameStatus, guesses]);
 
   return {
     guesses,
     currentGuess,
     gameStatus,
-    getLetterColor
+    getLetterColor,
+    SOLUTION
   };
 };
