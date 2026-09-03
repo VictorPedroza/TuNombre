@@ -161,6 +161,7 @@ export const loadHistory = (): WordleHistoryEntry[] => {
     return [];
   }
 };
+
 export const saveResult = (
   entry: WordleHistoryEntry,
   today: string,

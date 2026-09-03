@@ -22,28 +22,16 @@ import {
 
 export const useWordle = () => {
   const solution = useMemo(() => getDailyWord(), []);
-
   const today = useMemo(() => getDateKey(), []);
-
   const initialGame = useMemo(
     () => loadDailyGame(today, solution),
     [today, solution],
   );
 
   const [guesses, setGuesses] = useState<string[]>(initialGame?.guesses ?? []);
-
-  const [currentGuess, setCurrentGuess] = useState<string>(
-    initialGame?.currentGuess ?? "",
-  );
-
-  const [gameStatus, setGameStatus] = useState<GameStatus>(
-    initialGame?.gameStatus ?? "playing",
-  );
-
-  const [restartsUsed, setRestartsUsed] = useState<number>(
-    initialGame?.restartsUsed ?? 0,
-  );
-
+  const [currentGuess, setCurrentGuess] = useState<string>(initialGame?.currentGuess ?? "");
+  const [gameStatus, setGameStatus] = useState<GameStatus>(initialGame?.gameStatus ?? "playing");
+  const [restartsUsed, setRestartsUsed] = useState<number>(initialGame?.restartsUsed ?? 0);
   const [history, setHistory] = useState<WordleHistoryEntry[]>(loadHistory);
 
   const saveResult = useCallback(
