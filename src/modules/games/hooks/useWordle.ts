@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState, type KeyboardEvent } from "react";
 
 import {
   MAX_GUESSES,
@@ -135,18 +135,6 @@ export const useWordle = () => {
   );
 
   useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
-
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [handleKeyDown]);
-
-  useEffect(() => {
     saveDailyGame({
       date: today,
       word: solution,
@@ -185,6 +173,8 @@ export const useWordle = () => {
     wordLength: WORD_LENGTH,
     submitGuess,
     restartGame,
+    handleKeyDown,
+    setCurrentGuess,
     getLetterStatus,
     getLetterColor,
   };

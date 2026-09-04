@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { MAX_GUESSES } from "@modules/games/constants";
+import { MAX_GUESSES, WORD_LENGTH } from "@modules/games/constants";
 import { useWordle } from "@modules/games/hooks";
 
 import { WordleBoard } from "./components/WordleBoard";
@@ -17,9 +17,20 @@ export const WordleGame = () => {
         restartGame,
         canRestart,
         SOLUTION,
+        handleKeyDown,
+        setCurrentGuess,
     } = useWordle();
     const [isHistoryOpen, setIsHistoryOpen] = useState(false);
     const [isFeedbackOpen, setIsFeedbackOpen] = useState(true);
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        if (gameStatus === "playing") {
+            inputRef.current?.focus();
+        }
+    }, [gameStatus]);
+
+    const focusGameInput = () => inputRef.current?.focus();
 
     return (
         <div className="pt-10">
@@ -41,9 +52,30 @@ export const WordleGame = () => {
                     <p className="text-muted-foreground text-sm italic">Adivinhe a palavra em {MAX_GUESSES} tentativas.</p>
                 </div>
 
-                <WordleBoard
-                    guesses={guesses}
-                    currentGuess={currentGuess}
+                <div onClick={focusGameInput}>
+                    <WordleBoard
+                        guesses={guesses}
+                        currentGuess={currentGuess}
+                    />
+                </div>
+                <input
+                    ref={inputRef}
+                    value={currentGuess}
+                    onChange={(event) => {
+                        const nextGuess = event.target.value
+                            .replace(/[^a-zA-ZÀ-ÿ]/g, "")
+                            .slice(0, WORD_LENGTH)
+                            .toUpperCase();
+
+                        setCurrentGuess(nextGuess);
+                    }}
+                    onKeyDown={handleKeyDown}
+                    type="text"
+                    inputMode="text"
+                    autoCapitalize="characters"
+                    autoComplete="off"
+                    aria-label="Digite sua tentativa"
+                    className="absolute h-px w-px opacity-0"
                 />
                 <WordleFeedback
                     gameStatus={gameStatus}
