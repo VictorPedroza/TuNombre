@@ -1,5 +1,5 @@
-import { TimelineDesktop, TimelineMobile } from "@timeline/components"
-import { useMoments } from "@timeline/hooks";
+import { TimelineDesktop, TimelineMobile } from "@modules/timeline/components"
+import { useMoments } from "@modules/timeline/hooks";
 
 export const Timeline = () => {
     const { events, loading, error } = useMoments();

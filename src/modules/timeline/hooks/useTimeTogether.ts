@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { type Elapsed } from "@timeline/constants"
+import { type Elapsed } from "@modules/timeline/constants"
 
 
 interface UseTimeTogether {

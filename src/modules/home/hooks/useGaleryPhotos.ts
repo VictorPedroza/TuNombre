@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { supabase } from "@/shared/lib/supabase/supabase";
+
+import { supabase } from "@shared/lib";
 
 export interface Photo {
   src: string;

@@ -1,6 +1,6 @@
-import { useTimeTogether } from "@timeline/hooks"
-import { SummaryCard, UnitCard } from "@timeline/components"
-import { START_DATE } from "@timeline/constants"
+import { useTimeTogether } from "@modules/timeline/hooks"
+import { SummaryCard, UnitCard } from "@modules/timeline/components"
+import { START_DATE } from "@modules/timeline/constants"
 
 export const Summary = () => {
     const { daysUntilAnniversary, totalDaysTogether, elapsed } = useTimeTogether(START_DATE);

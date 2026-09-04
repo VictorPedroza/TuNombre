@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import { AuthProvider } from "../auth/AuthProvider";
+
+import { AuthProvider } from "@core/contexts";
 
 type MainContextProviderType = {
   children: ReactNode;

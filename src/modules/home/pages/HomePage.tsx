@@ -1,5 +1,5 @@
 import { DecorativeCarousel, HomeHero, HomeQuote } from "../components";
-import { useGaleryPhotos } from "../hooks/useGaleryPhotos";
+import { useGaleryPhotos } from "@modules/home/hooks";
 
 /**
  * Página Inicial da Aplicação 

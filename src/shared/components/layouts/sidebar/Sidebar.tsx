@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-import { routes } from "@/core/routes/routes";
+import { routes } from "@core/routes/routes";
 import { SidebarBottom, SidebarCloseMenuMobile, SidebarHead, SidebarNavItem } from "./components";
 
 interface SidebarProps {

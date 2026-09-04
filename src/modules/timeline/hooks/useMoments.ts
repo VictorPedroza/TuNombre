@@ -1,11 +1,11 @@
 import { useEffect, useState, useCallback } from "react";
-import { supabase } from "@/shared/lib";
+import { supabase } from "@shared/lib";
 import {
   BUCKET_NAME,
   type TimelineEvent,
   TABLE_NAME,
   type UpdadteTimelineEventDTO,
-} from "@timeline/constants";
+} from "@modules/timeline/constants";
 
 export const useMoments = () => {
   const [events, setEvents] = useState<TimelineEvent[]>([]);

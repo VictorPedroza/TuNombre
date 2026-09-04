@@ -1,4 +1,4 @@
-import { Summary, Timeline } from "@timeline/components";
+import { Summary, Timeline } from "@modules/timeline/components";
 
 /**
  * Interface da Página da História

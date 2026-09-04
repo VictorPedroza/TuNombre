@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Button } from "@/shared/components";
-import { TimelineModal, TimelineTable } from "@timeline/components";
+import { Button } from "@shared/components";
+import { TimelineModal, TimelineTable } from "@modules/timeline/components";
 
 export const AdminTimelinePage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);

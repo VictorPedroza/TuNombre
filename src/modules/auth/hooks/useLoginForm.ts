@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { supabase } from "@/shared/lib";
 import { useNavigate } from "react-router-dom";
+
+import { supabase } from "@shared/lib";
 
 /**
  * Hook para Autenticação do Usuário

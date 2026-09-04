@@ -1,5 +1,6 @@
-import type { Layout } from "@/shared/types/Routes";
 import { NavLink } from "react-router-dom";
+
+import type { Layout } from "@shared/constants";
 
 type HeaderItemsProps = {
   routes: Layout[];
@@ -18,7 +19,9 @@ export const HeaderItems = ({
         if (layout.private) return null;
         if (layout.path === "/auth") return null;
 
-        return layout.children.map((route) => {
+        return layout.children
+        .filter((route) => route.navigation !== false)
+        .map((route) => {
           const Icon = route.icon;
 
           return (

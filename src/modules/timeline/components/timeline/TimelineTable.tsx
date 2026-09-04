@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useMoments } from "@timeline/hooks";
+import { useMoments } from "@modules/timeline/hooks";
 import { TimelineModal } from "./TimelineModal";
-import { type TimelineEvent } from "@timeline/constants";
+import { type TimelineEvent } from "@modules/timeline/constants";
 import { Button } from "@/shared/components";
 
 export const TimelineTable = () => {

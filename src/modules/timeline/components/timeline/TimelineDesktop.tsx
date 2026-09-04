@@ -1,5 +1,5 @@
-import { type TimelineEvent } from "@timeline/constants";
-import { TimelineCard } from "@timeline/components";
+import { type TimelineEvent } from "@modules/timeline/constants";
+import { TimelineCard } from "@modules/timeline/components";
 
 interface TimelineDesktopProps {
     events: TimelineEvent[];
