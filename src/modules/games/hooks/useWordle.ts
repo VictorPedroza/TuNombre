@@ -1,81 +1,191 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import {
   MAX_GUESSES,
-  SOLUTION,
+  MAX_RESTARTS,
   WORD_LENGTH,
   type GameStatus,
+  type WordleHistoryEntry,
 } from "@modules/games/constants";
 
+import {
+  getDailyWord,
+  getDateKey,
+  getLetterColor as getWordleLetterColor,
+  getLetterStatus as getWordleLetterStatus,
+  loadDailyGame,
+  loadHistory,
+  saveDailyGame,
+  saveResult as  saveWordleResult
+} from "@modules/games/constants/wordle/";
+
+
 export const useWordle = () => {
-  const [guesses, setGuesses] = useState<string[]>([]);
-  const [currentGuess, setCurrentGuess] = useState<string>("");
-  const [gameStatus, setGameStatus] = useState<GameStatus>("playing");
+  const solution = useMemo(() => getDailyWord(), []);
+  const today = useMemo(() => getDateKey(), []);
+  const initialGame = useMemo(
+    () => loadDailyGame(today, solution),
+    [today, solution],
+  );
 
-  const submitGuess = () => {
-    if (currentGuess.length !== WORD_LENGTH) return;
+  const [guesses, setGuesses] = useState<string[]>(initialGame?.guesses ?? []);
+  const [currentGuess, setCurrentGuess] = useState<string>(initialGame?.currentGuess ?? "");
+  const [gameStatus, setGameStatus] = useState<GameStatus>(initialGame?.gameStatus ?? "playing");
+  const [restartsUsed, setRestartsUsed] = useState<number>(initialGame?.restartsUsed ?? 0);
+  const [history, setHistory] = useState<WordleHistoryEntry[]>(loadHistory);
 
-    const newGuesses = [...guesses, currentGuess];
+  const saveResult = useCallback(
+    (status: Exclude<GameStatus, "playing">, guessesCount: number) => {
+      const entry: WordleHistoryEntry = {
+        word: solution,
+        guesses: guessesCount,
+        status,
+        playedAt: new Date().toISOString(),
+      };
+
+      saveWordleResult(entry, today);
+
+      setHistory(loadHistory());
+    },
+    [solution, today],
+  );
+
+  const submitGuess = useCallback(() => {
+    if (gameStatus !== "playing") {
+      return;
+    }
+
+    if (currentGuess.length !== WORD_LENGTH) {
+      return;
+    }
+
+    const normalizedGuess = currentGuess.toUpperCase();
+
+    const newGuesses = [...guesses, normalizedGuess];
 
     setGuesses(newGuesses);
     setCurrentGuess("");
 
-    if (currentGuess === SOLUTION) {
+    if (normalizedGuess === solution) {
       setGameStatus("won");
+
+      saveResult("won", newGuesses.length);
+
       return;
     }
 
-    if (newGuesses.length === MAX_GUESSES) {
+    if (newGuesses.length >= MAX_GUESSES) {
       setGameStatus("lost");
+
+      saveResult("lost", newGuesses.length);
     }
-  };
+  }, [currentGuess, gameStatus, guesses, saveResult, solution]);
 
-  const handleKeyDown = (event: KeyboardEvent): void => {
-    if (gameStatus !== "playing") return;
-
-    if (event.key === "Enter") {
-      submitGuess();
+  const restartGame = useCallback(() => {
+    if (restartsUsed >= MAX_RESTARTS) {
       return;
     }
 
-    if (event.key === "Backspace") {
-      setCurrentGuess((prev) => prev.slice(0, -1));
+    if (gameStatus === "playing") {
       return;
     }
 
-    if (/^[A-Za-z]$/.test(event.key)) {
-      setCurrentGuess((prev) => {
-        if (prev.length >= WORD_LENGTH) return prev;
+    setGuesses([]);
+    setCurrentGuess("");
+    setGameStatus("playing");
 
-        return (prev + event.key).toUpperCase();
-      });
-    }
-  };
+    setRestartsUsed((previous) => previous + 1);
+  }, [gameStatus, restartsUsed]);
 
-  const getLetterColor = (letter: string, index: number): string => {
-    if (SOLUTION[index] === letter) {
-      return "bg-green-600 text-white border-green-600";
-    }
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      if (gameStatus !== "playing") {
+        return;
+      }
 
-    if (SOLUTION.includes(letter)) {
-      return "bg-red-500 text-white border-red-500";
-    }
+      if (event.key === "Enter") {
+        event.preventDefault();
 
-    return "bg-foreground text-white border-foreground";
-  };
+        submitGuess();
+
+        return;
+      }
+
+      if (event.key === "Backspace") {
+        event.preventDefault();
+
+        setCurrentGuess((previous) => previous.slice(0, -1));
+
+        return;
+      }
+
+      if (/^[a-zA-ZÀ-ÿ]$/.test(event.key)) {
+        event.preventDefault();
+
+        setCurrentGuess((previous) => {
+          if (previous.length >= WORD_LENGTH) {
+            return previous;
+          }
+
+          return (previous + event.key).toUpperCase();
+        });
+      }
+    },
+    [gameStatus, submitGuess],
+  );
 
   useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [currentGuess, gameStatus, guesses]);
+  }, [handleKeyDown]);
+
+  useEffect(() => {
+    saveDailyGame({
+      date: today,
+      word: solution,
+      guesses,
+      currentGuess,
+      gameStatus,
+      restartsUsed,
+    });
+  }, [currentGuess, gameStatus, guesses, restartsUsed, solution, today]);
+
+  const getLetterStatus = useCallback(
+    (guess: string, index: number) =>
+      getWordleLetterStatus(guess, index, solution),
+    [solution],
+  );
+
+  const getLetterColor = useCallback(
+    (letter: string, index: number, guess?: string) =>
+      getWordleLetterColor(letter, index, solution, guess),
+    [solution],
+  );
+
+  const canRestart = gameStatus !== "playing" && restartsUsed < MAX_RESTARTS;
 
   return {
     guesses,
     currentGuess,
     gameStatus,
-    getLetterColor
+    history,
+    solution,
+    SOLUTION: solution,
+    restartsUsed,
+    maxRestarts: MAX_RESTARTS,
+    canRestart,
+    maxGuesses: MAX_GUESSES,
+    wordLength: WORD_LENGTH,
+    submitGuess,
+    restartGame,
+    getLetterStatus,
+    getLetterColor,
   };
 };
