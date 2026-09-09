@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import { supabase } from "@shared/lib";
+import { getDailyIndex, PUZZLE_IMG } from "@modules/games/constants";
 
 // Função Utilitária
 const generateShuffledPuzzle = (): number[] => {
@@ -22,6 +25,34 @@ export const useSlidingGame = () => {
   const [tiles, setTiles] = useState<number[]>(() => generateShuffledPuzzle());
   const [moves, setMoves] = useState(0);
   const [won, setWon] = useState(false);
+  const [puzzleImage, setPuzzleImage] = useState(PUZZLE_IMG);
+
+  useEffect(() => {
+    let active = true;
+
+    async function fetchPuzzleImage() {
+      const { data, error } = await supabase
+        .from("galery")
+        .select("file_path")
+        .order("created_at", { ascending: false })
+        .order("file_path", { ascending: true });
+
+      if (!active || error || !data?.length) return;
+
+      const photo = data[getDailyIndex(data.length)];
+      const { data: urlData } = supabase.storage
+        .from("galery")
+        .getPublicUrl(photo.file_path);
+
+      if (active && urlData.publicUrl) setPuzzleImage(urlData.publicUrl);
+    }
+
+    fetchPuzzleImage();
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   function moveTile(index: number) {
     if (won) return;
@@ -54,5 +85,5 @@ export const useSlidingGame = () => {
     setWon(false);
   }
 
-  return { tiles, moves, won, moveTile, shuffle };
+  return { tiles, moves, won, puzzleImage, moveTile, shuffle };
 };

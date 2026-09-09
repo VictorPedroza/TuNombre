@@ -5,7 +5,7 @@ import { useSlidingGame } from "@modules/games/hooks"
 import { PuzzlePiece } from "./components/PuzzlePiece";
 
 export const SlidingGame = () => {
-    const { tiles, moves, won, moveTile, shuffle } = useSlidingGame();
+    const { tiles, moves, won, puzzleImage, moveTile, shuffle } = useSlidingGame();
 
     return (
         <div className="max-w-lg mx-auto px-6 py-12">
@@ -30,7 +30,7 @@ export const SlidingGame = () => {
             <div className="flex flex-col items-center">
                 <div style={{ display: "grid", gridTemplateColumns: `repeat(3, 120px)`, gap: 2, background: "rgba(26,26,26,0.08)", borderRadius: 12, overflow: "hidden", boxShadow: "0 8px 32px rgba(0,0,0,0.08)" }}>
                     {tiles.map((v, gi) => (
-                        <PuzzlePiece key={gi} value={v} onClick={() => moveTile(gi)} />
+                        <PuzzlePiece key={gi} value={v} image={puzzleImage} onClick={() => moveTile(gi)} />
                     ))}
                 </div>
 
