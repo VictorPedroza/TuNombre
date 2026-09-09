@@ -1,11 +1,19 @@
 import { ArrowLeft } from "lucide-react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import { useSlidingGame } from "@modules/games/hooks"
 import { PuzzlePiece } from "./components/PuzzlePiece";
+import { SlidingCompletion } from "./components/SlidingCompletion";
 
 export const SlidingGame = () => {
     const { tiles, moves, won, puzzleImage, moveTile, shuffle } = useSlidingGame();
+    const [isCompletionOpen, setIsCompletionOpen] = useState(false);
+
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        if (won) setIsCompletionOpen(true);
+    }, [won]);
 
     return (
         <div className="max-w-lg mx-auto px-6 py-12">
@@ -18,13 +26,6 @@ export const SlidingGame = () => {
                 <h1 className="text-4xl md:text-5xl text-foreground mb-3 serif font-semibold">Foto Puzzle</h1>
                 <p className="text-muted-foreground text-sm italic">Reorganize os pedaços para revelar a imagem completa.</p>
             </div>
-
-            {/* Mensagem de Vitória */}
-            {won && (
-                <div className="mb-6 px-5 py-3 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium text-center">
-                    Parabéns! Resolvido em {moves} movimentos 🎉
-                </div>
-            )}
 
             {/* Tabuleiro e Controles */}
             <div className="flex flex-col items-center">
@@ -41,6 +42,15 @@ export const SlidingGame = () => {
                     </button>
                 </div>
             </div>
+
+            {isCompletionOpen && (
+                <SlidingCompletion
+                    moves={moves}
+                    image={puzzleImage}
+                    setIsOpen={setIsCompletionOpen}
+                    onShuffle={shuffle}
+                />
+            )}
             
         </div>
     );
