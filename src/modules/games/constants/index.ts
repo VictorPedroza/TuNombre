@@ -11,7 +11,7 @@ export interface GamePreview {
   to: string;
 }
 
-export const EPOCH = new Date("2026-01-06T00:00:00-03:00").getTime();
+export const EPOCH = new Date("2026-01-01T00:00:00-03:00").getTime();
 
 const MS_IN_DAY = 1000 * 60 * 60 * 24;
 
