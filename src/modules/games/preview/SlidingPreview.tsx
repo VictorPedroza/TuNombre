@@ -7,7 +7,7 @@ export const SlidingPreview = () => {
                 {tiles.map((index) => (
                     <div
                         key={index}
-                        className="h-[22px] w-[22px] border border-black/10 bg-slate-100"
+                        className="h-[22px] w-[22px] border border-black/10 bg-white"
                     />
                 ))}
             </div>
