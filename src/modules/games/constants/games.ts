@@ -1,5 +1,5 @@
 import type { GamePreview } from ".";
-import { WordlePreview } from "../preview";
+import { SlidingPreview, WordlePreview } from "../preview";
 
 export const games: GamePreview[] = [
   {
@@ -8,4 +8,10 @@ export const games: GamePreview[] = [
     preview: WordlePreview,
     to: "/games/wordle",
   },
+  {
+    title: "Puzzle Foto",
+    description: "Reorganize os pedaços para revelar a imagem completa",
+    preview: SlidingPreview,
+    to: "/games/sliding"
+  }
 ];
