@@ -91,8 +91,6 @@ export const WORDS = [
   "DADOS",
 ];
 
-export const EPOCH = new Date("2026-01-01T00:00:00-03:00").getTime();
-
 export const WORD_LENGTH: number = 5;
 export const MAX_GUESSES: number = 6;
 export const MAX_RESTARTS: number = 3;
