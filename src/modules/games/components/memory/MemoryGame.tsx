@@ -7,7 +7,7 @@ import { MemoryCompletion } from "./components/MemoryCompletion";
 
 export const MemoryGame = () => {
     const { flip, moves, won, restart, total, matched, cards } = useMemory();
-    const [isCompletionOpen, setIsCompletionOpen] = useState(true);
+    const [isCompletionOpen, setIsCompletionOpen] = useState(false);
 
     useEffect(() => {
         // eslint-disable-next-line react-hooks/set-state-in-effect
