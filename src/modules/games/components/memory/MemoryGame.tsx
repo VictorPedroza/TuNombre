@@ -1,10 +1,18 @@
+import { useEffect, useState } from "react";
 import { Heart } from "lucide-react";
 
 import { useMemory } from "@modules/games/hooks";
 import { GameHead } from "../head/GameHead";
+import { MemoryCompletion } from "./components/MemoryCompletion";
 
 export const MemoryGame = () => {
     const { flip, moves, won, restart, total, matched, cards } = useMemory();
+    const [isCompletionOpen, setIsCompletionOpen] = useState(true);
+
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        if (won) setIsCompletionOpen(true);
+    }, [won]);
 
     return (
         <div className="mx-auto max-w-lg px-6 py-12">
@@ -23,43 +31,17 @@ export const MemoryGame = () => {
                 </span>
             </div>
 
-            {won ? (
-                <div className="py-12 text-center">
-                    <div className="mb-5 text-5xl">🏆</div>
+            <div className="grid grid-cols-4 gap-2.5">
+                {cards.map((card) => {
+                    const isVisible = card.flipped || card.matched;
 
-                    <h2 className="serif mb-2 text-2xl text-foreground">
-                        Memória Perfeita!
-                    </h2>
-
-                    <p className="mb-8 text-sm text-muted-foreground">
-                        Você encontrou todos os {total} pares em {moves} tentativas.
-                    </p>
-
-                    <button
-                        onClick={restart}
-                        className="
-                            rounded-full bg-primary px-8 py-3.5
-                            text-sm font-medium text-primary-foreground
-                            shadow-[0_4px_20px_rgba(200,55,45,0.25)]
-                            transition-opacity hover:opacity-90
-                        "
-                    >
-                        Jogar novamente
-                    </button>
-                </div>
-            ) : (
-                <>
-                    <div className="grid grid-cols-4 gap-2.5">
-                        {cards.map((card) => {
-                            const isVisible = card.flipped || card.matched;
-
-                            return (
-                                <button
-                                    key={card.uid}
-                                    type="button"
-                                    onClick={() => flip(card.uid)}
-                                    disabled={card.matched}
-                                    className={`
+                    return (
+                        <button
+                            key={card.uid}
+                            type="button"
+                            onClick={() => flip(card.uid)}
+                            disabled={card.matched}
+                            className={`
                                         aspect-square
                                         rounded-[14px]
                                         flex items-center justify-center
@@ -81,33 +63,51 @@ export const MemoryGame = () => {
                                                 shadow-[0_2px_8px_rgba(200,55,45,0.2)]
                                             `
                                         }
-                                    `}
-                                >
-                                    {isVisible ? (
-                                        <span className="text-[28px]">
-                                            {card.emoji}
-                                        </span>
-                                    ) : (
-                                        <Heart
-                                            size={16}
-                                            className="text-white/60"
-                                            fill="rgba(255,255,255,0.3)"
-                                        />
-                                    )}
-                                </button>
-                            );
-                        })}
-                    </div>
+                            `}
+                        >
+                            {isVisible ? (
+                                <span className="text-[28px]">
+                                    {card.emoji}
+                                </span>
+                            ) : (
+                                <Heart
+                                    size={16}
+                                    className="text-white/60"
+                                    fill="rgba(255,255,255,0.3)"
+                                />
+                            )}
+                        </button>
+                    );
+                })}
+            </div>
 
-                    <div className="mt-6 h-1.5 overflow-hidden rounded-full bg-muted">
-                        <div
-                            className="h-full rounded-full bg-accent transition-all duration-500"
-                            style={{
-                                width: `${(matched / total) * 100}%`,
-                            }}
-                        />
-                    </div>
-                </>
+            <div className="mt-6 h-1.5 overflow-hidden rounded-full bg-muted">
+                <div
+                    className="h-full rounded-full bg-accent transition-all duration-500"
+                    style={{
+                        width: `${(matched / total) * 100}%`,
+                    }}
+                />
+            </div>
+
+            {won && !isCompletionOpen && (
+                <button
+                    type="button"
+                    onClick={restart}
+                    className="mt-5 flex w-full items-center justify-center gap-2 text-sm text-primary underline underline-offset-4 transition-opacity hover:opacity-75"
+                >
+                    Jogar novamente
+                </button>
+            )}
+
+            {isCompletionOpen && (
+                <MemoryCompletion
+                    moves={moves}
+                    total={total}
+                    cards={cards}
+                    setIsOpen={setIsCompletionOpen}
+                    onRestart={restart}
+                />
             )}
         </div>
     );
