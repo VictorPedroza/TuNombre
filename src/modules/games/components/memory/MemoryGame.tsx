@@ -1,29 +1,17 @@
-import { ArrowLeft, Heart } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { Heart } from "lucide-react";
 
 import { useMemory } from "@modules/games/hooks"
+import { GameHead } from "../head/GameHead";
 
 export const MemoryGame = () => {
     const { flip, moves, won, restart, total, matched, cards } = useMemory();
 
     return (
         <div className="max-w-lg mx-auto px-6 py-12">
-            <div className="mb-16">
-                <NavLink
-                    to="/games"
-                    className="
-                            flex items-center gap-1.5
-                            text-sm text-muted-foreground
-                            hover:text-green-600
-                            mb-10 transition-colors
-                        "
-                >
-                    <ArrowLeft size={14} />
-                    Voltar
-                </NavLink>
-                <h1 className="text-4xl md:text-5xl text-foreground mb-3 serif font-semibold">Jogo da Memória</h1>
-                <p className="text-muted-foreground text-sm italic">Vire as cartas e encontre todos os pares românticos.</p>
-            </div>
+            <GameHead
+                title="Jogo da Memória"
+                description="Vire as cartas e encontre todos os pares românticos."
+            />
 
             <div className="flex justify-between items-center mb-6">
                 <span className="text-xs text-muted-foreground">{matched}/{total} pares encontrados</span>
