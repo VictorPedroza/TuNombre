@@ -1,6 +1,7 @@
 export * from "./games";
 export * from "./wordle/wordle";
 export * from "./sliding/sliding";
+export * from "./memory/memory";
 
 import type { ComponentType } from "react";
 

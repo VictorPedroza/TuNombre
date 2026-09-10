@@ -8,8 +8,7 @@ import { HomePage } from "@modules/home";
 import { LoginPage } from "@modules/auth";
 import { AdminTimelinePage, TimelinePage } from "@modules/timeline";
 import { OverviewPage } from "@modules/admin";
-import { GamePage, WordleGame } from "@modules/games";
-import { SlidingGame } from "@/modules/games/components/sliding/SlidingGame";
+import { GamePage, MemoryGame, SlidingGame, WordleGame } from "@modules/games";
 
 /**
  * Constante que define as rotas da aplicação, incluindo layouts e páginas.
@@ -67,6 +66,7 @@ export const routes: Layout[] = [
       { path: "", label: "Jogos", component: GamePage, icon: Gamepad },
       { path: "wordle", label: "Wordle", component: WordleGame, icon: Gamepad, navigation: false },
       { path: "sliding", label: "Sliding", component: SlidingGame, icon: Gamepad, navigation: false },
+      { path: "memory", label: "Memory", component: MemoryGame, icon: Gamepad, navigation: false },
     ],
   },
 ];
