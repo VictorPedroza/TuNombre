@@ -4,13 +4,13 @@ import {
   MAX_GUESSES,
   MAX_RESTARTS,
   WORD_LENGTH,
+  getDateKey,
   type GameStatus,
   type WordleHistoryEntry,
 } from "@modules/games/constants";
 
 import {
   getDailyWord,
-  getDateKey,
   getLetterColor as getWordleLetterColor,
   getLetterStatus as getWordleLetterStatus,
   loadDailyGame,
